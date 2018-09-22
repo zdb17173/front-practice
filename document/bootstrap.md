@@ -1,6 +1,23 @@
-const path = require('path');
-const webpack = require('webpack');
 
+# bootsrtap
+
+## npm安装各种包
+
+npm install css-loader style-loader url url-loader file file-loader 
+
+npm install precss autoprefixer node-sass postcss-loader sass-loader
+
+npm install bootstrap
+
+npm install popper.js
+
+
+## 配置静态资源解析
+
+bootstrap会使用到css，scss，jpg，woff等资源，配置对应loader
+
+webpack.config.js
+```javascript
 
 module.exports = {
     entry: {
@@ -57,14 +74,12 @@ module.exports = {
         contentBase: './dist'
     },
     plugins: [
-        //防止依赖jquery报错，加入$ 及jQuery到全局变量中
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",
             'window.jQuery': 'jquery'
         }),
     ],
-    //当多个模块引用相同js时会报错，通过配置可以自动抽取相同部分
     optimization: {
         splitChunks: {
             cacheGroups: {
@@ -77,3 +92,8 @@ module.exports = {
         }
     },
 };
+
+```
+
+
+
