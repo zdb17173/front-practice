@@ -5,7 +5,8 @@ const webpack = require('webpack');
 module.exports = {
     entry: {
         "main": "./src/index.js",
-        "module1": "./src/module1.js"
+        "module1": "./src/module1.js",
+        "tree": "./src/tree.js"
     },
     output: {
         filename: '[name].bundle.js',
@@ -15,7 +16,7 @@ module.exports = {
     module: {
         rules: [
             { test: /\.css$/, use:['style-loader', 'css-loader']},
-            { test:/\.(png)|(jpg)|(gif)|(woff)|(svg)|(eot)|(ttf)$/,
+            { test:/\.(png)|(jpg)|(gif)|(woff)|(svg)|(eot)|(less)|(ttf)$/,
                 use: [
                     {
                         loader: "url-loader",
