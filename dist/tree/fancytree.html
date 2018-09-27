@@ -11,10 +11,40 @@
     <script src="../commons.bundle.js"></script>
     <script src="../tree.bundle.js"></script>
     <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
+
+    <style type="text/css">
+        div#tree {
+            height: 95%;
+            width: 500px;
+            padding: 5px;
+            margin-right: 16px;
+        }
+
+        div#treeContent {
+            float: left;
+            width: 500px;
+            overflow-x:auto;
+            margin: 0 auto;
+            height: 100%;
+        }
+    </style>
 </head>
 
 <body>
-<div id="tree"></div>
+<div>
+    <div id="treeContent">
+        <div id="tree"></div>
+    </div>
+    <div style="margin-left: 500px;background-color: darkgrey">
+        dasdsadsaddsa
+    </div>
+</div>
+
+
+<div><span id="echoActive1"></span></div>
+<div><button onclick="javascript:expandAll()">Expand All</button></div>
+<div><button onclick="javascript:addRootNode()">Add Root Node</button></div>
+
 </body>
 
 </html>

@@ -1,12 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
 
-
 module.exports = {
     entry: {
         "main": "./src/index.js",
         "module1": "./src/module1.js",
-        "tree": "./src/tree.js"
+        "tree": "./src/tree.js",
+        "md":"./src/marked.js"
     },
     output: {
         filename: '[name].bundle.js',

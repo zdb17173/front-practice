@@ -1,7 +1,7 @@
 
 //使用win8主题
 // import 'jquery.fancytree/dist/skin-lion/ui.fancytree.less';  // CSS or LESS
-import 'jquery.fancytree/dist/skin-win8-xxl/ui.fancytree.css'
+import 'jquery.fancytree/dist/skin-win8-n/ui.fancytree.css'
 //引用fancytree
 import {createTree} from 'jquery.fancytree';
 
@@ -12,8 +12,36 @@ import 'ui-contextmenu'
 import 'jquery-ui/themes/base/all.css';
 
 
-//tree 数据
 var treeData = [
+    {"title": "simple node (no explicit id, so a default key is generated)" },
+    {"key": "2", "title": "item1 with key and tooltip", "tooltip": "Look, a tool tip!" },
+    {"key": "3", "title": "<span>item2 with <b>html</b> inside a span tag</span>" },
+    {"key": "4", "title": "node 4" },
+    {"key": "5", "title": "using href", "href": "http://www.wwWendt.de/" },
+    {"key": "6", "title": "node with some extra classes (will be added to the generated markup)", "extraClasses": "my-extra-class" },
+    {"key": "10", "title": "Folder 1", "folder": true, "children": [
+            {"key": "10_1", "title": "Sub-item 1.1", "children": [
+                    {"key": "10_1_1", "title": "Sub-item 1.1.1"},
+                    {"key": "10_1_2", "title": "Sub-item 1.1.2 r"}
+                ]},
+            {"key": "10_2", "title": "Sub-item 1.2", "children": [
+                    {"key": "10_2_1", "title": "Sub-item 1.2.1"},
+                    {"key": "10_2_2", "title": "Sub-item 1.2.2"}
+                ]}
+        ]},
+    {"key": "20", "title": "Simple node with active children (expand)", "expanded": true, "children": [
+            {"key": "20_1", "title": "Sub-item 2.1", "children": [
+                    {"key": "20_1_1", "title": "Sub-item 2.1.1"},
+                    {"key": "20_1_2", "title": "Sub-item 2.1.2"}
+                ]},
+            {"key": "20_2", "title": "Sub-item 2.2", "children": [
+                    {"key": "20_2_1", "title": "Sub-item 2.2.1"},
+                    {"key": "20_2_2", "title": "Sub-item 2.2.2"}
+                ]}
+        ]}
+]
+//tree 数据
+/*var treeData = [
     {title: "item1 with key and tooltip", tooltip: "Look, a tool tip!" },
     {title: "item2: selected on init"},
     {title: "Folder", folder: true, key: "id3",
@@ -51,7 +79,7 @@ var treeData = [
         ]
     },
     {title: "Lazy folder", folder: true, lazy: true }
-];
+];*/
 
 $(function(){
     $("#tree").fancytree({
@@ -100,10 +128,10 @@ $(function(){
                 }
             }
         },
-        selectMode: 1,
+        selectMode: 1,// 1:single, 2:multi, 3:multi-hier
         source: treeData,
         activate: function(event, data) {
-            $("#echoActive1").text(data.node.title);
+            $("#echoActive1").text("title:[" + data.node.title + "]  key[" + data.node.key + "]");
         },
         select: function(event, data) {
             // Display list of selected nodes
@@ -140,7 +168,8 @@ $(function(){
         menu: [
             {title: "Delete <kbd>[Del]</kbd>", cmd: "delete", uiIcon: "ui-icon-trash" },
             {title: "----"},
-            {title: "New child <kbd>[Ctrl+Shift+N]</kbd>", cmd: "addChild", uiIcon: "ui-icon-arrowreturn-1-e" }
+            {title: "New child <kbd>[Ctrl+Shift+N]</kbd>", cmd: "addChild", uiIcon: "ui-icon-arrowreturn-1-e" },
+            {title: "New Node <kbd>[Ctrl+N]</kbd>", cmd: "addRootNode", uiIcon: "ui-icon-arrowreturn-1-e" }
         ],
         beforeOpen: function(event, ui) {
             var node = $.ui.fancytree.getNode(ui.target);
@@ -155,6 +184,8 @@ $(function(){
                 addChild();
             }else if(ui.cmd == "delete"){
                 deleteNode();
+            }else if(ui.cmd == "addRootNode"){
+                addRootNode();
             }
 
             /*var that = this;
@@ -183,4 +214,25 @@ function addChild(){
         return;
     }
     node.editCreateNode("child", "Node title");
+}
+
+//webpack 在js文件要引用的函数中将其作用域提升，在函数前添加window.,否则前端html中无法找到该函数
+window.expandAll = function expandAll() {
+    $('#tree').fancytree('getTree').expandAll();
+}
+
+window.addRootNode = function addRootNode(){
+    // Sample: add an hierarchic branch using code.
+    // This is how we would add tree nodes programatically
+    var rootNode = $("#tree").fancytree("getRootNode");
+    var childNode = rootNode.addChildren({
+        key: "111",
+        title: "Programatically addded nodes",
+        // tooltip: "This folder and all child nodes were added programmatically.",
+        folder: false
+    });
+    /*childNode.addChildren({
+        title: "Document using a custom icon",
+        icon: "customdoc1.gif"
+    });*/
 }
