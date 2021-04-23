@@ -1,0 +1,78 @@
+
+server:
+  port: 8080
+  tomcat:
+    basedir: "/data/apps/temp" #避免系统长时间空闲后报错
+
+spring:
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true #日期格式转换成时间戳
+  servlet:
+    multipart:
+      fileSizeThreshold: 0
+      maxFileSize: 1024MB
+      maxRequestSize: 1048MB
+  freemarker:
+    content-type: "text/html"
+    enabled: true
+    cache: false #缓存配置
+    template-loader-path: classpath:/templates/ #模板加载路径 按需配置
+    charset: "UTF-8"
+    suffix: ".ftl"
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/cas?characterEncoding=utf8&useUnicode=true&useSSL=false&autoReconnect=true&serverTimezone=Asia/Shanghai
+#    username: root
+#    password: 123456
+##    type: com.zaxxer.hikari.HikariDataSource
+#    #防止出现8小时不操作链接断开
+#    driver-class-name: com.mysql.jdbc.Driver
+#    hikari:
+#      max-lifetime: 30000
+#      idle-timeout: 30000
+##      connectionInitSql: set names utf8mb4 COLLATE utf8mb4_general_ci;
+#      minimumIdle: 2
+#      maximum-pool-size: 20
+#    data-source-properties:
+#      prepStmtCacheSize: 250
+#      prepStmtCacheSqlLimit: 2048
+#      cachePrepStmts: true
+#      useServerPrepStmts: true
+
+swagger:
+  host: localhost:8080
+  apiInfo:
+    title: api title
+    description: api description
+    serviceTerms: My Apps API terms of service
+    license: Apache License Version 2.0
+    licenseUrl: https://github.com/springfox/springfox/blob/master/LICENSE
+    version: version
+    contact:
+      name: fran
+      url: zhang.dongbo@cgtn.com
+      email: zhang.dongbo@cgtn.com
+
+# 关于跨域设置，如前端访问返回403，提示跨域，则需要把网站域名加倒allowedOrigins中。
+# allowedOrigins与nginx的Access-Control-Allow-Origin: * 不能产生重复，不然会报错。
+# 也可以在Controller中直接使用@CrossOrigin注解来解决跨域问题
+cors:
+  configs:
+    allowCredentials: false
+    allowedOrigins:
+      - '*'
+    allowedMethods:
+      - POST
+      - GET
+      - HEAD
+      - OPTIONS
+
+logging:
+  config: classpath:logback.xml
+
+
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: org.fran.demo.springboot2.dao;com.cgtn.multiLanguage.cms.dao.mapper
+
+

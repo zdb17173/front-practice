@@ -1,6 +1,6 @@
 
 import marked from 'marked';
-import 'highlight.js/styles/dracula.css'
+import 'highlight.js/styles/atom-one-light.css'
 
 import hljs from 'highlight.js/lib/highlight';
 import javascript from 'highlight.js/lib/languages/javascript';
@@ -259,4 +259,6 @@ $(function () {
     });
 
     document.getElementById('content').innerHTML = myMarked(str);
+
+    $("pre code").addClass("hljs");
 });
