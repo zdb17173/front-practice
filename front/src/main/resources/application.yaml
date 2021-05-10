@@ -1,6 +1,6 @@
 
 server:
-  port: 8080
+  port: 8081
   tomcat:
     basedir: "/data/apps/temp" #避免系统长时间空闲后报错
 

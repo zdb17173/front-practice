@@ -13,9 +13,7 @@ import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @RestController
@@ -27,6 +25,8 @@ public class TestRestController {
 	public JsonResult<String> postTest(
 			@RequestBody Map<String, Object> vo
 	){
+
+		System.out.println(vo);
 		JsonResult<String> res = new JsonResult<>();
 		res.setData("dsadsad");
 		res.setDescription("sahdjhsajdhjsahdjsajdjh");
@@ -39,6 +39,26 @@ public class TestRestController {
 
 		JsonResult res = new JsonResult<>();
 
+		Map<String, Object> data = new HashMap<>();
+		data.put("a", "aaaaa");
+		data.put("b", new String[]{"11", "22", "33", "44"});
+		data.put("date", "2021-05-06 10:08:32");
+		data.put("cailiaoRadio", "铝合金");
+		data.put("cailiaoOther", "blabla");
+
+		List<Map<String, Object>> dynData = new ArrayList<>();
+
+		Map<String, Object> d1 = new HashMap<>();
+		d1.put("title0", "dsadsa111");
+		d1.put("ddd0", "dsadsadad111");
+		dynData.add(d1);
+		Map<String, Object> d2 = new HashMap<>();
+		d2.put("title1", "dsadsa222");
+		d2.put("ddd1", "dsadsadad222");
+		dynData.add(d2);
+		data.put("dynData", dynData);
+
+		res.setData(data);
 		res.setDescription("sahdjhsajdhjsahdjsajdjh");
 		res.setStatus(200);
 		return res;
