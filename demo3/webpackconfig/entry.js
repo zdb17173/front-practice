@@ -4,7 +4,6 @@ var path = require('path');
 /*
  循环所有文件，对文件名做处理，并放入entry数组中，返回entry
  */
-
 var entries = {};
 var entryPattern = path.resolve(__dirname, '../src/entries/**.js');
 glob.sync(entryPattern).forEach(function (entry) {

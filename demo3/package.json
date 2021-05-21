@@ -9,7 +9,54 @@
     "start": "cross-env APP_ENV=prod electron .",
     "build":"webpack --mode development",
     "debug":"webpack-dev-server --mode development",
-    "electron": "concurrently \"cross-env APP_ENV=dev webpack-dev-server --mode development --port 8000\" \"cross-env APP_ENV=dev electron .\""
+    "electron": "concurrently \"cross-env APP_ENV=dev webpack-dev-server --mode development --port 8000\" \"cross-env APP_ENV=dev electron .\"",
+    "winpack": "webpack --mode production --progress & electron-builder -w"
+  },
+  //electron打包相关配置
+  "build": {
+    "extends": null,
+    "productName": "App",
+    "appId": "yourAppId",
+    "directories": {
+      "output": "release/${version}_setup"
+    },
+    "files": [
+      "node_modules/**/*",
+      "dist/**/*",
+      "resource/*",
+      "electron/*"
+    ],
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ],
+      "artifactName": "${productName}_setup_${version}.${ext}",
+      "icon": "resource/icon.ico"
+    },
+    "publish": [
+      {
+        "provider": "generic",
+        "url": ""
+      }
+    ],
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": false
+    }
   },
   "repository": {
     "type": "git",
@@ -20,6 +67,7 @@
     "cross-env": "^7.0.3",
     "electron-promise-ipc": "^2.2.4",
     "electron": "^12.0.5",
+    "electron-builder": "^22.10.5",
     "@babel/cli": "^7.12.1",
     "@babel/core": "^7.12.3",
     "@babel/polyfill": "^7.12.1",
