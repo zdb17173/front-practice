@@ -86,9 +86,8 @@ const App = withRouter(function(props) {
                                     <Radio.Group >
                                         <Radio value="铝合金">铝合金</Radio>
                                         <Radio value="钛合金">钛合金</Radio>
-                                        <Radio value="高温合金">高温合金</Radio>
+                                        <Radio value="合金">高温合金</Radio>
                                         <Radio value="不锈钢">不锈钢</Radio>
-                                        <Radio value="金属间化合物">金属间化合物</Radio>
                                         <Radio value="其他">其他</Radio>
                                     </Radio.Group>
                                 </Form.Item>

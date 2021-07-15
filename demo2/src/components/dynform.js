@@ -39,7 +39,7 @@ const FormData = function(fields){
 const onFinish = (values) => {
     console.log(values);
 
-    axios.post("http://127.0.0.1:8081/api/test/add", {...values})
+    axios.post("http://127.0.0.1:8080/api/indus/add", {...values})
         .then(response => {
             response = response.data;
             if (response.status == 200) {
@@ -120,12 +120,12 @@ const FormDynApp = withRouter(function(props) {
     const [form] = Form.useForm();
 
     useEffect(() => {
-        axios.get("http://127.0.0.1:8081/api/test/get?id=1")
+        axios.get("http://127.0.0.1:8080/api/indus/get?indexId=4&dbType=1")
             .then(response => {
                 response = response.data;
                 if (response.status == 200) {
 
-                    form.setFieldsValue(response.data);
+                    form.setFieldsValue(JSON.parse(response.data));
                 }
             }).catch(error => console.log(`Save failed1 : (${error})`));
     }, []);
@@ -182,6 +182,23 @@ const FormDynApp = withRouter(function(props) {
                 name="basic"
                 // initialValues={{ remember: true }}
                 onFinish={onFinish}>
+
+                <Row>
+                    <Col>
+                        <Form.Item
+                            name="dbType"
+                            label="dbType">
+                            <Input />
+                        </Form.Item>
+                    </Col>
+                    <Col>
+                        <Form.Item
+                            name="id"
+                            label="id">
+                            <Input />
+                        </Form.Item>
+                    </Col>
+                </Row>
 
                 <Form.List name="dynData">
                     {

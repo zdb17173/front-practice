@@ -23,6 +23,7 @@ import DatePicker from '../components/datepicker'
 import Form from '../components/form'
 import DynForm from '../components/dynform'
 
+
 const initRouter = () => {
 
     const node = config.map(menu => {

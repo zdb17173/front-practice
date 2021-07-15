@@ -12,7 +12,6 @@
     "electron": "concurrently \"cross-env APP_ENV=dev webpack-dev-server --mode development --port 8000\" \"cross-env APP_ENV=dev electron .\"",
     "winpack": "webpack --mode production --progress & electron-builder -w"
   },
-  //electron打包相关配置
   "build": {
     "extends": null,
     "productName": "App",
@@ -21,7 +20,6 @@
       "output": "release/${version}_setup"
     },
     "files": [
-      "node_modules/**/*",
       "dist/**/*",
       "resource/*",
       "electron/*"

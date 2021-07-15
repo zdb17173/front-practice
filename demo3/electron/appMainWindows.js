@@ -35,10 +35,16 @@ module.exports = class AppMainWindow extends BrowserWindow {
 
     initMainWindow() {
         this.loadURL(
-            isDevEnv ? DEV_ADDRESS : `file://${path.join(__dirname, '../dist/index.html')}`,
+            "https://www.cgtn.com",
         ).then(() => {
             console.log('main url is loading....');
         });
+
+        // this.loadURL(
+        //     isDevEnv ? DEV_ADDRESS : `file://${path.join(__dirname, '../dist/index.html')}`,
+        // ).then(() => {
+        //     console.log('main url is loading....');
+        // });
     }
 
 

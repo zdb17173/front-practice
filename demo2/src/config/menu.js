@@ -1,6 +1,8 @@
 import React from 'react'
 
-export default [
+
+
+const menu = [
         {
             path: "/date",
             showName : "date",
@@ -53,3 +55,5 @@ export default [
             breadcrumbName: 'dynform'
         }
 ];
+
+export default menu;
