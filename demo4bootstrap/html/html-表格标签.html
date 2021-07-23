@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- 网页icon -->
+    <link rel="shortcut icon" href="fluidicon.png"/>
+    <title>表格表单</title>
+</head>
+
+<style>
+    table {
+        /* table边框设置
+        1.默认separate
+        2.collapse边框会合并为一个单一的边框。会忽略 border-spacing 和 empty-cells 属性。
+        3.inherit从父元素继承*/
+        border-collapse: collapse;
+    }
+</style>
+
+<body>
+
+    <h1>表格</h1>
+    <table border="1">
+        <tr>
+            <td>生命壹号</td>
+            <td>23</td>
+            <td>男</td>
+            <td>黄冈</td>
+        </tr>
+
+        <tr>
+            <td>许嵩</td>
+            <td>29</td>
+            <td>男</td>
+            <td>安徽</td>
+        </tr>
+
+    </table>
+
+    <hr />
+    <h1>行合并 & 列合并</h1>
+
+    <table border="1">
+        <thead style="background-color: #badce3">
+            <tr>
+                <td>姓名</td>
+                <td>年龄</td>
+                <td>性别</td>
+                <td>地区</td>
+            </tr>
+        </thead>
+
+        <thead>
+            <!-- 行合并 -->
+            <tr>
+                <td>邓紫棋</td>
+                <td>23</td>
+                <td>女</td>
+                <td>香港</td>
+            </tr>
+
+            <tr>
+                <td>许嵩</td>
+                <td>29</td>
+                <td colspan="2">安徽</td>
+            </tr>
+
+            <!-- 列合并 -->
+            <tr>
+                <td>邓紫棋</td>
+                <td>23</td>
+                <td>女</td>
+                <td rowspan="2">香港</td>
+            </tr>
+
+            <tr>
+                <td>邓紫棋</td>
+                <td>23</td>
+                <td>女</td>
+            </tr>
+        </thead>
+
+        <tfoot>
+            <tr>
+                <td colspan="4">dsadada</td>
+            </tr>
+        </tfoot>
+    </table>
+
+
+</body>
+</html>

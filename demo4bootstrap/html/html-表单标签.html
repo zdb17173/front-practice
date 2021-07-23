@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- 网页icon -->
+    <link rel="shortcut icon" href="fluidicon.png"/>
+    <title>表单标签</title>
+</head>
+<body>
+    <!--
+        name：表单的名称，用于JS来操作或控制表单时使用；
+        id：表单的名称，用于JS来操作或控制表单时使用；
+        action：指定表单数据的处理程序，一般是PHP，如：action=“login.php”
+        method：表单数据的提交方式，一般取值：get(默认)和post
+    -->
+    <form action="/login" method="POST" enctype="multipart/form-data">
+        <!--
+            <input type="">
+                text（默认）
+                password：密码类型
+                radio：单选按钮，名字相同的按钮作为一组进行单选（单选按钮，天生是不能互斥的，如果想互斥，必须要有相同的name属性。name就是“名字”。 ）。非常像以前的收音机，按下去一个按钮，其他的就抬起来了。所以叫做radio。
+                checkbox：多选按钮，name 属性值相同的按钮作为一组进行选择。
+                checked：将单选按钮或多选按钮默认处于选中状态。当<input>标签设置为type="radio"或者type=checkbox时，可以用这个属性。属性值也是checked，可以省略。
+                hidden：隐藏框，在表单中包含不希望用户看见的信息
+                button：普通按钮，结合js代码进行使用。
+                submit：提交按钮，传送当前表单的数据给服务器或其他程序处理。这个按钮不需要写value自动就会有“提交”文字。这个按钮真的有提交功能。点击按钮后，这个表单就会被提交到form标签的action属性中指定的那个页面中去。
+                reset：重置按钮，清空当前表单的内容，并设置为最初的默认值
+                image：图片按钮，和提交按钮的功能完全一致，只不过图片按钮可以显示图片。
+                file：文件选择框。 提示：如果要限制上传文件的类型，需要配合JS来实现验证。对上传文件的安全检查：一是扩展名的检查，二是文件数据内容的检查。
+            <input size="50">
+                表示文本框内可以显示五十个字符。一个英文或一个中文都算一个字符。 注意size属性值的单位不是像素哦。
+            <input readonly >
+                文本框只读，不能编辑。因为它的属性值也是readonly，所以属性值可以不写。 用了这个属性之后，在google浏览器中，光标点不进去；在IE浏览器中，光标可以点进去，但是文字不能编辑。
+            <input disabled >
+                文本框只读，不能编辑，光标点不进去。属性值可以不写。
+        -->
+
+        <fieldset>
+            <legend>账号信息</legend>
+                姓名：<input name="name1" type="text" value="内容1readonly" size="50" readonly/><br/>
+
+                昵称：<input name="nickname" type="text" value="内容2disabled" size="50" disabled/><br/>
+
+                名字：<input name="name2" type="text" value="内容3" size="50"/><br/>
+
+                密码：<input name="pwd" type="password" value="pwd" size="50"><br/>
+        </fieldset>
+
+        <fieldset>
+            <legend>其他信息</legend>
+                性别：<input type="radio" name="gender" id="radio1" value="male" checked="">男
+                        <input type="radio" name="gender" id="radio2" value="female" >女<br/>
+
+                爱好：<input type="checkbox" name="love" value="eat">吃饭
+                    <input type="checkbox" name="love" value="sleep">睡觉
+                    <input type="checkbox" name="love" value="bat">打豆豆<br/>
+
+                <!-- label标签，用于解决点击文字，按钮不变的问题，复选框也支持 -->
+                体型：<input type="radio" name="body" id="fat" /> <label for="fat">胖</label>
+                <input type="radio" name="body" id="unfat"  /> <label for="unfat">不胖</label><br/>
+
+                <!--
+                    <select multiple="">：可以对下拉列表中的选项进行多选。属性值为 multiple，也可以没有属性值。也就是说，既可以写成 multiple=""，也可以写成multiple="multiple"。
+                    <select size="3">：如果属性值大于1，则列表为滚动视图。默认属性值为1，即下拉视图。
+                    <option selected>：预选中。没有属性值。
+                -->
+                <select name="education">
+                    <option>小学</option>
+                    <option>初中</option>
+                    <option>高中</option>
+                    <option>大学</option>
+                    <option selected="">研究生</option>
+                </select><br/>
+
+                <!--
+                    rows="4"：指定文本区域的行数。
+                    cols="20"：指定文本区域的列数。
+                    readonly
+                -->
+                <textarea name="txtInfo" rows="4" cols="20">1、不爱摄影不懂设计的程序猿不是一个好的产品经理。</textarea><br/>
+        </fieldset>
+
+        <!-- fieldset 和legend用于对表单的模块进行语义化 -->
+        <fieldset>
+            <legend>提交</legend>
+            <input type="submit" value="提交按钮"><br>
+        </fieldset>
+    </form>
+
+
+</body>
+</html>
