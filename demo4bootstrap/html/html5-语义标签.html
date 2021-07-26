@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- 网页icon -->
+    <link rel="shortcut icon" href="../resources/fluidicon.png"/>
+    <title>h5语义标签</title>
+
+    <style>
+        body {font-family: Verdana, sans-serif; font-size:0.8em;}
+        header,nav, section,article,footer,aside
+        {border:1px solid grey; margin:5px; padding:8px;}
+        nav ul {margin:0; padding:0;}
+        nav ul li {display:inline; margin:5px;}
+    </style>
+</head>
+<body>
+    <!--
+        H5中，定义了大量的语义元素，帮助网页为各骨架通过语义进行区分。
+        语义元素清楚地向浏览器和开发者描述其意义。
+            #非语义元素的例子：<div> 和 <span> - 无法提供关于其内容的信息。
+            #语义元素的例子：<form>、<table> 以及 <img> - 清晰地定义其内容。
+
+        注意：
+        1、尽可能少的使用无语义的标签div和span
+        2、在语义不明显时，既可以使用div或者p时，尽量用p，因为p在默认情况下有上下间距，对兼容特殊终端有利
+        3、不要使用纯样式标签，如：b、font、u等，改用css设置
+        4、需要强调的文本，可以包含在strong或者em标签中
+        5、使用表格时，标题要用caption，表头用thead，主体部分用tbody包围，尾部用tfoot包围。表头和一般单元格要区分开，表头用th，单元格用td
+        6、表单域要用fieldset标签包起来，并用legend标签说明表单的用途
+        7、每个input标签对应的说明文本都需要使用label标签，并且通过为input设置id属性
+    -->
+
+    <!-- 定义页头 -->
+    <header>
+        <h1>HTML5 SKeleton</h1>
+    </header>
+
+    <!-- 定义导航 -->
+    <nav>
+        <ul>
+            <li><a href="html5_semantic_elements.asp">HTML5 Semantic</a></li>
+            <li><a href="html5_geolocation.asp">HTML5 Geolocation</a></li>
+            <li><a href="html5_canvas.asp">HTML5 Graphics</a></li>
+        </ul>
+    </nav>
+
+    <!-- 定义文档中的大块 -->
+    <section>
+
+        <h1>Famous Cities</h1>
+
+        <!-- 定义文档内的文章 -->
+        <article>
+            <h2>London</h2>
+            <p>London is the capital city of England. It is the most populous city in the United Kingdom,
+                with a metropolitan area of over 13 million inhabitants.</p>
+        </article>
+
+        <article>
+            <h2>Paris</h2>
+            <p>Paris is the capital and most populous city of France.</p>
+        </article>
+
+        <article>
+            <h2>Tokyo</h2>
+            <p>Tokyo is the capital of Japan, the center of the Greater Tokyo Area,
+                and the most populous metropolitan area in the world.</p>
+        </article>
+
+    </section>
+
+    <!-- 定义侧边栏 -->
+    <aside>
+        dsadsa
+    </aside>
+
+    <!-- 定义页脚 -->
+    <footer>
+        <p>© 2014 W3Schools. All rights reserved.</p>
+    </footer>
+</body>
+</html>
