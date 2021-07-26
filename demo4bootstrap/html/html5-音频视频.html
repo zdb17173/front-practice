@@ -9,12 +9,70 @@
     <link rel="shortcut icon" href="../resources/fluidicon.png"/>
     <title>h5多媒体</title>
 
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        tr, td {
+            border:solid 1px;
+            width: 5rem;
+        }
+    </style>
 </head>
 <body>
 <!--
 
 -->
+    <fieldset>
+        <legend>浏览器支持视频类型</legend>
+        <table>
+            <thead>
+                <tr style="background-color: #badce3">
+                    <td>格式</td><td>IE</td><td>FireFox</td><td>Opera</td><td>Chrome</td><td>safari</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>OGG</td><td>X</td><td>3.5+</td><td>10.5+</td><td>5.0+</td><td>X</td>
+                </tr>
+                <tr>
+                    <td>MP4</td><td>9.0+</td><td>X</td><td>X</td><td>5.0+</td><td>3.0+</td>
+                </tr>
+                <tr>
+                    <td>webm</td><td>X</td><td>4.0+</td><td>10.6+</td><td>6.0+</td><td>X</td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
 
-    <video src="../resources/001.mp4" controls></video>
+    <!--
+        autoplay	如果出现该属性，则视频在就绪后马上播放。
+        controls	如果出现该属性，则向用户显示控件，比如播放按钮。
+        loop	如果出现该属性，则当媒介文件完成播放后再次开始播放。
+        muted	规定视频的音频输出应该被静音。
+        poster	规定视频下载时显示的图像，或者在用户点击播放按钮前显示的图像。
+        preload 如果出现该属性，则视频在页面加载时进行加载，并预备播放。如果使用 "autoplay"，则忽略该属性。
+    -->
+    <div>
+        <video src="../resources/001.mp4" controls></video>
+    </div>
+
+
+    <!--
+       autoplay	如果出现该属性，则视频在就绪后马上播放。
+       controls	如果出现该属性，则向用户显示控件，比如播放按钮。
+       loop	如果出现该属性，则当媒介文件完成播放后再次开始播放。
+       muted	规定视频的音频输出应该被静音。
+       preload 如果出现该属性，则视频在页面加载时进行加载，并预备播放。如果使用 "autoplay"，则忽略该属性。
+    -->
+    <div>
+        <!--推荐的兼容写法：-->
+        <audio controls loop>
+            <source src="../resources/aaa.mp3"/>
+            <source src="../resources/aaa.ogg"/>
+            <source src="../resources/aaa.wav"/>
+            抱歉，你的浏览器暂不支持此音频格式
+        </audio>
+    </div>
 </body>
 </html>
