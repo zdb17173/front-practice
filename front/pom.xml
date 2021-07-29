@@ -64,6 +64,15 @@
             <artifactId>jackson-annotations</artifactId>
             <version>${jackson.json.version}</version>
         </dependency>
+
+
+        <!-- websocket使用netty -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.66.Final</version>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>

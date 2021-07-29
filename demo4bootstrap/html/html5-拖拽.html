@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- 网页icon -->
+    <link rel="shortcut icon" href="../resources/fluidicon.png"/>
+    <title>h5拖拽</title>
+    <style>
+        .box1{
+            width: 200px;
+            height: 200px;
+            background-color: green;
+            flex: 0 0 auto;
+        }
+
+        .box2{
+            position: relative;
+            width: 200px;
+            height: 220px;
+            left: 300px;
+            top: 100px;
+            border: 1px solid #000;
+            background-color: red;
+            flex: 0 0 auto;
+        }
+
+        .box3 {
+            width: calc(100% - 630px);
+            height: 300px;
+            border: 1px solid #000;
+            position: absolute;
+            left: 600px;
+            top: 600px;
+            display: flex;
+        }
+    </style>
+</head>
+    <body>
+        <div style="display: flex;">
+            <!--给 box1 增加拖拽的属性-->
+            <!-- 图片链接自带draggable=true 可以禁用。最后一个图片未禁用，因此拖动时拖动的是图片 -->
+            <div class="box1" draggable="true">
+                <img src="../resources/fluidicon.png" height="190px" style="margin:5px;" draggable="false"/>
+            </div>
+            <div class="box1" draggable="true">
+                <img src="../resources/处暑.png" height="190px" style="margin:5px;" draggable="false"/>
+            </div>
+            <div class="box1" draggable="true">
+                <img src="../resources/大寒.png" height="190px" style="margin:5px;" draggable="false"/>
+            </div>
+            <div class="box1" draggable="true">
+                <img src="../resources/春分.png" height="190px" style="margin:5px;" draggable="false"/>
+            </div>
+            <div class="box1" draggable="true">
+                <img src="../resources/白露.png" height="190px" style="margin:5px;"/>
+            </div>
+        </div>
+
+        <div style="display: flex;">
+            <div class="box2" id="box1">1
+                <img id="img1" src="" height="190px" style="margin:5px;"/>
+            </div>
+
+            <div class="box2" id="box2">2
+                <img id="img2" src="" height="190px" style="margin:5px;"/>
+            </div>
+
+            <div class="box2" id="box3">3
+                <img id="img3" src="" height="190px" style="margin:5px;"/>
+            </div>
+
+            <div class="box2" id="box4">4
+                <img id="img4" src="" height="190px" style="margin:5px;"/>
+            </div>
+        </div>
+
+
+        <div class="box3"></div>
+
+        <a href="html5-表单标签.html">点击进入表单标签html</a>
+
+        <!--
+            window.history退回与前进
+            1. window.history.forward(); // 前进
+            2. window.history.back(); // 后退
+            3. window.history.go(); // 刷新
+            4. window.history.go(n); //n=1 表示前进；n=-1 后退；n=0s 刷新。如果移动的位置超出了访问历史的边界，会静默失败，但不会报错。
+            通过JS可以加入一个访问状态
+            5. history.pushState; //放入历史中的状态数据, 设置title(现在浏览器不支持改变历史状态)
+        -->
+        <div>
+            <input type="button" onclick="javascript:window.history.back();" value="退回"/>
+            <input type="button" onclick="javascript:window.history.forward();" value="前进"/>
+        </div>
+    </body>
+
+
+    <script>
+
+        var curDragElement;
+        // var box = document.querySelector('.box1');
+        var fromElements = document.getElementsByClassName('box1');
+        for(var i=0; i< fromElements.length; i ++ ){
+            var box = fromElements[i];
+            //  绑定拖拽事件
+            //  拖拽开始
+            box.ondragstart = function (e) {
+                console.log(e);
+                console.log('拖拽开始.');
+                curDragElement = e.target;
+            }
+
+            //  拖拽离开：鼠标拖拽时离开被拖拽的元素时触发
+            box.ondragleave = function () {
+                console.log('拖拽离开..');
+            }
+
+            //  拖拽结束
+            box.ondragend = function () {
+                console.log('拖拽结束...');
+                console.log("---------------");
+            }
+
+            box.ondrag = function () {
+                console.log('拖拽');
+            }
+        }
+
+        //目标元素的拖拽事件
+        var toElements = document.getElementsByClassName('box2');
+
+        for(var i=0; i< toElements.length; i ++ ){
+            var two = toElements[i];
+            // 当被拖拽元素进入时触发
+            two.ondragenter = function () {
+                console.log("来了.");
+            }
+
+            // 当被拖拽元素离开时触发
+            two.ondragleave = function () {
+
+                console.log("走了..");
+            }
+
+            // 当拖拽元素在 目标元素上时，连续触发
+            two.ondragover = function (e) {
+                //阻止拖拽事件的默认行为
+                e.preventDefault(); //【重要】一定要加这一行代码，否则，后面的方法 ondrop() 无法触发。
+
+                console.log("over...");
+            }
+
+            // 当在目标元素上松开鼠标是触发
+            two.ondrop = function (e) {
+                console.log(e);
+                console.log("松开鼠标了....");
+                // var toElement = e.target;
+                // var id = toElement.id;
+                // var imgElement = document.getElementById(id.replace("box", "img"));
+
+                var imgElement = this.childNodes[1];
+                if(curDragElement.tagName == "DIV"){
+                    var v = curDragElement.childNodes[1];
+                    imgElement.src = v.src
+                }else
+                    imgElement.src = curDragElement.src;
+                curDragElement = null;
+
+                // console.log(f);
+            }
+        }
+
+        var box3 = document.querySelector('.box3');
+        box3.ondragover = function (e) {
+            //阻止拖拽的默认行为
+            e.preventDefault();
+        }
+        //当在目标元素上松开鼠标是触发
+        box3.ondrop = function () {
+            //将拖拽的元素追加到 two里面来
+            this.appendChild(curDragElement);
+            curDragElement = null;
+        }
+
+    </script>
+</html>
