@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- 网页icon -->
+    <link rel="shortcut icon" href="../resources/fluidicon.png"/>
+    <title>h5-GPS与全屏</title>
+
+    <!--<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=aaaf80ea451cc7b8d233f305ca23368b"></script>-->
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=aaaf80ea451cc7b8d233f305ca23368b"></script>
+
+    <style>
+        #container {width:800px; height: 400px; }
+
+        .box {
+            width: 384px;
+            height: 336px;
+            /*background: url("../resources/1.jpg") no-repeat center center;*/
+            background-image: url("../resources/1.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 100px auto;
+            border-radius: 5%;
+        }
+
+        /*全屏伪类：当元素处于全屏时 隐藏点我放大*/
+        /*W3C标准使用不带破折号的单词:fullscreen。但各浏览器都有自己的-webkit-full-screen 和:-moz-full-screen 还有-ms-fullscreen */
+        .box:-webkit-full-screen > #fangda{
+            /*background-color: red;*/
+            /*margin: 100px auto;*/
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="gps">点击按钮获得gps( IE下可以  Chrome下需翻墙)</div>
+    <input type="button" onclick="getLocation()" value="点我获取GPS信息"/>
+
+    <div id="container"></div>
+
+    <div class="box">
+        <p style="margin: 1px auto; width: 8rem; color: #FFFFFF; font-size: 2rem;" id="fangda">点我放大</p>
+    </div>
+</body>
+
+
+<script>
+
+    //高德地图
+    //https://lbs.amap.com/api/windows-phone-sdk/guide/screenshot
+    //https://lbs.amap.com/demo/javascript-api/example/common/add-several-overlay
+    window.onLoad  = function(){
+        var map = new AMap.Map('container', {
+            center: [118.397428, 39.90923],//中心点坐标
+        });
+    }
+    var url = 'https://webapi.amap.com/maps?v=1.4.15&key=key=aaaf80ea451cc7b8d233f305ca23368b&callback=onLoad';
+    var jsapi = document.createElement('script');
+    jsapi.charset = 'utf-8';
+    jsapi.src = url;
+    document.head.appendChild(jsapi);
+
+    function getLocation(){
+        if(navigator.geolocation){
+//       如果支持，获取用户地理信息
+
+//            successCallback 当获取用户位置成功的回调函数
+//            errorCallback 当获取用户位置失败的回调函数
+            navigator.geolocation.getCurrentPosition(successCallback,errorCallback);
+        }else{
+            console.log('sorry,你的浏览器不支持地理定位');
+        }
+    }
+
+    // 获取地理位置成功的回调函数
+    function successCallback(position){
+        var x = document.querySelector("#gps");
+//            获取用户当前的经纬度
+//            coords坐标
+//            纬度latitude
+        var wd=position.coords.latitude;
+//            经度longitude
+        var jd=position.coords.longitude;
+
+        console.log("获取用户位置成功！");
+        console.log(wd+'----------------'+jd);
+
+        x.innerHTML = 'GPS信息为：' + wd+'----------------'+jd
+//          40.05867366972477----------------116.33668634275229
+
+//            谷歌地图：40.0601398850,116.3434224706
+//            百度地图：40.0658210000,116.3500430000
+//            腾讯高德：40.0601486487,116.3434373643
+    }
+    // 获取地理位置失败的回调函数
+    function errorCallback(error){
+        console.log(error);
+        console.log('获取用户位置失败！')
+    }
+
+
+    var box = document.querySelector('.box');
+    // box.requestFullscreen();   //直接这样写是没有效果的。之所以无效，应该是浏览器的机制，必须要点一下才可以实现全屏功能。
+    document.querySelector('.box').onclick = function () {
+        // 开启全屏显示的兼容写法
+        if (box.requestFullscreen) {  //如果支持全屏，那就让元素全屏
+            box.requestFullscreen();
+        } else if (box.webkitRequestFullScreen) {
+            box.webkitRequestFullScreen();
+        } else if (box.mozRequestFullScreen) {
+            box.mozRequestFullScreen();
+        }
+
+    }
+</script>
+
+</html>
