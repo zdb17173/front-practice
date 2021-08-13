@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- 网页icon -->
+    <link rel="shortcut icon" href="../resources/fluidicon.png"/>
+    <title>css-定位</title>
+
+    <style>
+        body {
+            margin: 0px;
+        }
+
+        .inner_c ul{
+            margin: 0px;
+        }
+        .content{
+            margin: 0px 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <p style="color: #fff; margin: 0px">一些内容</p>
+        <p style="color: #fff;">一些内容</p>
+        <p style="color: #fff;">一些内容</p>
+        <p style="color: #fff;">一些内容</p>
+        <p style="color: #fff;">一些内容</p>
+        <p style="color: #fff;">一些内容</p>
+        <div class="nav" id="mid">
+            <div class="inner_c">
+                <ul>
+                    <li><a href="#">网页栏目</a></li>
+                    <li><a href="#">网页栏目</a></li>
+                    <li><a href="#">网页栏目</a></li>
+                    <li><a href="#">网页栏目</a></li>
+                    <li><a href="#">网页栏目</a></li>
+                    <li><a href="#">网页栏目</a></li>
+                    <li><a href="#">网页栏目</a></li>
+                    <li><a href="#">网页栏目</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2>定位</h2>
+        <hr/>
+        <p>CSS定位有三种，绝对定位、相对定位、固定定位</p>
+        <ul>
+            <li>position: absolute; 绝对定位</li>
+            <li>position: relative; 相对定位</li>
+            <li>position: fix; 固定定位</li>
+        </ul>
+
+        <h2>1. 相对定位</h2>
+        <p>
+            <strong>相对定位：</strong>让元素相对于自己原来的位置，进行位置调整（可用于盒子的位置微调）。<br>
+            我们之前学习的背景属性中，是通过如下格式：<br>
+            background-position:向右偏移量 向下偏移量;<br>
+            <br>
+            但这回的定位属性，是通过如下格式：<br>
+            position: relative;
+            left: 50px;
+            top: 50px;<br>
+            <br>
+            <strong>相对定位不脱标</strong><br>
+            相对定位：不脱标，老家留坑，别人不会把它的位置挤走。<br>
+            <br>
+            也就是说，相对定位的真实位置还在老家，只不过影子出去了，可以到处飘。<br>
+            <br>
+            相对定位的用途<br>
+            如果想做“压盖”效果（把一个div放到另一个div之上），我们一般不用相对定位来做。相对定位，就两个作用：<br>
+            <br>
+            （1）微调元素<br>
+            （2）做绝对定位的参考，子绝父相<br>
+            相对定位的定位值<br>
+            left：盒子右移<br>
+            <br>
+            right：盒子左移<br>
+            <br>
+            top：盒子下移<br>
+            <br>
+            bottom：盒子上移<br>
+            <br>
+            PS：负数表示相反的方向。<br>
+        </p>
+
+
+        <p>
+            例子：box1、box2、box3为顺序的3个div<br>
+            box2设置了相对定位，left202 top-202 所以和box1平行，但是box2的位置仍然被box2占着，所以box3上面空出200X200的位置
+        </p>
+        <style>
+            .box1{
+                width: 200px;
+                height: 200px;
+                border: 2px solid red;
+            }
+            .box2{
+                position: relative;/*相对定位：相对于自己原来的位置*/
+                left: 202px;/*横坐标：正值表示向右偏移，负值表示向左偏移*/
+                top: -202px;/*纵坐标：正值表示向下偏移，负值表示向上偏移*/
+
+                width: 200px;
+                height: 200px;
+                border: 1px dashed lightgrey;
+            }
+            .box3{
+                width: 200px;
+                height: 200px;
+                border: 2px solid red;
+            }
+            .z{
+                line-height: 200px;
+                text-align: center;
+                font-size: 100px;
+                margin: 0;
+            }
+        </style>
+        <div>
+            <div class="box1"><p class="z">1</p></div>
+            <div class="box2"><p class="z">2</p></div>
+            <div class="box3"><p class="z">3</p></div>
+        </div>
+
+        <h2>2. 绝对定位</h2>
+        <hr>
+        <p>
+            <strong>绝对定位：</strong><br>
+            定义横纵坐标。原点在父容器的左上角或左下角。横坐标用left表示，纵坐标用top或者bottom表示。<br>
+            格式举例如下：<br>
+            position: absolute;  绝对定位<br>
+            left: 10px;  横坐标<br>
+            top/bottom: 20px;  纵坐标<br>
+        </p>
+
+        <p>
+            <strong>demo</strong><br>
+            下面例子中abs为绝对定位{bottom200 left1000因此在最上面}<br>
+            三个div盒子分别为box1 abs box3，由于abs被设为了绝对定位，脱离了文档流，所以box1和box3紧挨着
+        </p>
+        <style>
+            .abs{
+                width: 200px;
+                height: 200px;
+                border: 2px dashed lightgrey;
+                position: absolute;
+                bottom: 200px;
+                left: 1000px;
+            }
+        </style>
+        <div>
+            <div class="box1"><p class="z">1</p></div>
+            <div class="abs"><p class="z">abs</p></div>
+            <div class="box3"><p class="z">3</p></div>
+        </div>
+
+        <p><strong>绝对定位的参考点（重要）</strong></p>
+        <p>（1）如果用top描述，那么参考点就是页面的左上角，而不是浏览器的左上角：</p>
+        <p>
+            <img src="../resources/doc/绝对定位图3.png"> <img src="../resources/doc/绝对定位图4.png">
+        </p>
+        <p>（2）如果用bottom描述，那么参考点就是浏览器首屏窗口尺寸（好好理解“首屏”二字），对应的页面的左下角：</p>
+        <p>为了理解“首屏”二字的含义，我们来看一下动态图：</p>
+        <p>
+            <img src="../resources/doc/绝对定位图2.gif">
+        </p>
+
+        <p>（3）以盒子为参考点 一个绝对定位的元素，如果父辈元素中也出现了已定位（无论是绝对定位、相对定位，还是固定定位）的元素，那么将以父辈这个元素，为参考点。</p>
+        <p>
+            以下例子中，4个div盒子顺序排放，父div设置了position: relative。<br>
+            盒子1: (200X200) <br>
+            盒子2: abs(相对定位 bottom200 left1000) <br>
+            盒子3: (200X200) <br>
+            盒子4: (200X200) <br>
+        </p>
+        <style>
+
+        </style>
+        <div style="position: relative">
+            <div>
+                <!-- 父亲是定位的元素不一定是父亲，也可以是爷爷 -->
+                <div class="box1"><p class="z">1</p></div>
+                <div class="abs"><p class="z">abs</p></div>
+                <div class="box3"><p class="z">3</p></div>
+                <div class="box3"><p class="z">4</p></div>
+            </div>
+        </div>
+
+        <p>实际应用中，“子绝父相”有意义：这样可以保证父亲没有脱标，儿子脱标在父亲的范围里面移动。于是，工程上经常这样做：</p>
+        <p>父亲浮动，设置相对定位（零偏移），然后让儿子绝对定位一定的距离。</p>
+        <p>
+            需要注意的几点：<br>
+            （1）要听最近的已经定位的祖先元素的，不一定是父亲，可能是爷爷。<br>
+            （2）不一定是相对定位，任何定位，都可以作为儿子的参考点。<br>
+            （3）绝对定位的儿子，无视参考的那个盒子的padding。<br>
+        </p>
+
+        <style>
+            .top-icon{
+                background-color: #0a53be;
+                border-bottom-radius: 16px;
+                position: absolute;
+                text-align: center;
+                top:-6px;
+                left:20px;
+                margin: 0px;
+                width: 55px;
+                line-height: 22px;
+                height: 22px;
+                color: #fff;
+                font-size: 16px;
+            }
+            .goods{
+                border: 10px solid lightgrey;
+                width: 320px;
+            }
+            .goods-pic{
+                border: 1px solid orange;
+                position: relative;
+                width:320px;
+            }
+            .goods-bg {
+                height: 2rem;
+                background-color: black;
+                color: white;
+                position: absolute;
+                bottom: 0px;
+                width: 320px;
+                margin: 0px;
+                line-height: 2rem; /*文字高度居中*/
+                text-align: center; /*文字横向居中*/
+            }
+            .goods-title {
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 1;
+                line-height: 18px;
+                height: 18px;
+                overflow: hidden;
+                margin: 5px 5px;
+            }
+            .price{
+                float: left;
+                color: orange;
+            }
+            .price-or{
+                float: left;
+                color: lightgray;
+                text-decoration: line-through;
+            }
+            .sales{
+                float: right;
+                color: lightgray;
+            }
+            .sales-num{
+                float: right;
+                color: orange;
+            }
+        </style>
+        <div>
+            <p>demo，做一个商品列表格</p>
+
+            <div class="goods">
+                <div class="goods-pic">
+                    <div>
+                        <img src="../resources/1.jpg" width="320">
+                    </div>
+                    <p class="goods-bg">广东深圳宝安区建安一路海雅缤纷城4楼</p>
+                    <div class="top-icon">热卖</div>
+                </div>
+                <div style="border: 1px solid orange; width: 300px;padding: 10px;">
+                    <div>
+                        <p class="goods-title">【海洋缤纷城】万达影城（深圳海雅广场）这是一个广场，商场。</p>
+                        <p class="goods-title">单人电影票，可观看2D</p>
+                    </div>
+                    <div style="margin-top: 10px">
+                        <span class="price">￥35</span><span class="price-or">￥80</span><span class="sales-num">225</span><span class="sales">已售</span>
+                        <div style="clear: both"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>3. 固定定位</h2>
+        <hr>
+        <p>
+            固定定位：就是相对浏览器窗口进行定位。无论页面如何滚动，这个盒子显示的位置不变。<br>
+            <br>
+            备注：IE6不兼容。<br>
+            <br>
+            <strong>用途1：网页右下角的“返回到顶部”</strong><br>
+            <br>
+            比如我们经常看到的网页右下角显示的“返回到顶部”，就可以固定定位。<br>
+        </p>
+
+        <style type="text/css">
+            .backtop{
+                position: fixed;
+                bottom: 20px;
+                right: 30px;
+                width: 100px;
+                height: 30px;
+                background-color: gray;
+                text-align: center;
+                line-height:30px;
+                color:white;
+                text-decoration: none;   /*去掉超链接的下划线*/
+            }
+        </style>
+        <a class="backtop">回到顶部</a>
+
+        <p>
+            <strong>用途2：顶部导航条</strong><br>
+            <br>
+            我们经常能看到固定在网页顶端的导航条，可以用固定定位来做。<br>
+            <br>
+            需要注意的是，假设顶部导航条的高度是60px，那么，为了防止其他的内容被导航条覆盖，我们要给body标签设置60px的padding-top。<br>
+            <br>
+            顶部导航使用js判断滚动条是否超出，超出则固定顶部导航。<br>
+        </p>
+        <style>
+            .header{
+                height: 300px;
+                background-color: #333;
+            }
+            .nav{
+                width: 100%;
+                background-color: #333;
+                z-index: 99999999;
+            }
+            .inner_c{
+                width: 1000px;
+                height: 60px;
+                margin: 0 auto;
+            }
+            .fix{
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 60px;
+            }
+
+            .inner_c ul{
+                list-style: none;
+            }
+            .inner_c ul li{
+                float: left;
+                width: 100px;
+                height: 60px;
+                text-align: center;
+                line-height: 60px;
+            }
+            .inner_c ul li a{
+                display: block;
+                width: 100px;
+                height: 60px;
+                color:white;
+                text-decoration: none;
+            }
+            .inner_c ul li a:hover{
+                background-color: gold;
+            }
+        </style>
+
+
+        <script>
+            document.onscroll = () => {
+                //   计算  导航栏距离文档顶部的距离 - 文档顶部卷起来的高度
+                let top = document.getElementById("mid").offsetTop - document.documentElement.scrollTop;
+                console.log(top);
+                if(top< 0){
+                    document.getElementById("mid").className = 'nav fix'
+                }else {
+                    document.getElementById("mid").className = 'nav'
+                }
+            }
+        </script>
+
+
+        <h2>4. z-index属性</h2>
+        <hr>
+
+        <p>
+            z-index属性：表示谁压着谁。数值大的压盖住数值小的。<br>
+            <br>
+            有如下特性：<br>
+            <br>
+            （1）属性值大的位于上层，属性值小的位于下层。<br>
+            <br>
+            （2）z-index值没有单位，就是一个正整数。默认的z-index值是0。<br>
+            <br>
+            （3）如果大家都没有z-index值，或者z-index值一样，那么在HTML代码里写在后面，谁就在上面能压住别人。定位了的元素，永远能够压住没有定位的元素。<br>
+            <br>
+            （4）只有定位了的元素，才能有z-index值。也就是说，不管相对定位、绝对定位、固定定位，都可以使用z-index值。而浮动的元素不能用。<br>
+            <br>
+            （5）从父现象：父亲怂了，儿子再牛逼也没用。意思是，如果父亲1比父亲2大，那么，即使儿子1比儿子2小，儿子1也能在最上层。<br>
+            <br>
+            针对（1）（2）（3）条，举例如下：<br>
+            <br>
+            这是默认情况下的例子：（div1在上层，div2在下层）<br>
+        </p>
+        <style>
+            .zp{
+                position: relative;
+                width: 500px;
+                height: 500px;
+                background-color: #d9d9d9;
+            }
+            .z1{
+                width: 300px;
+                height: 200px;
+                background-color: #d63384;
+                position: absolute;
+            }
+            .z2{
+                width: 300px;
+                height: 200px;
+                background-color: #ffcd39;
+                position: absolute;
+                top:100px;
+                left:20px;
+            }
+        </style>
+        <div class="zp">
+            <div class="z1"><p class="z">1</p></div>
+            <div class="z2"><p class="z">2</p></div>
+        </div>
+        <p>
+            为1设置z-index: 2  为2设置z-index: 1，覆盖调过来了。<br>
+        </p>
+        <div class="zp">
+            <div class="z1" style="z-index: 2"><p class="z" >1</p></div>
+            <div class="z2" style="z-index: 1"><p class="z" >2</p></div>
+        </div>
+        <p>
+            z-index属性的应用还是很广泛的。当好几个已定位的标签出现覆盖的现象时，我们可以用这个z-index属性决定，谁处于最上方。也就是层级的应用。<br>
+            <br>
+            层级：<br>
+            <br>
+            （1）必须有定位（除去static）<br>
+            <br>
+            （2）用z-index来控制层级数。<br>
+        </p>
+    </div>
+
+
+</body>
+
+</html>

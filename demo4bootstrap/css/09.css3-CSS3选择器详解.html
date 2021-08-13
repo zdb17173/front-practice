@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- 网页icon -->
+    <link rel="shortcut icon" href="../resources/fluidicon.png"/>
+    <title>css3-选择器详解</title>
+
+    <style>
+        a {
+            color: #0a53be;
+            font-size: 20px;
+            text-decoration-line: none;
+        }
+
+        p {
+            font-size: 16px;
+            font-family: LarkHackSafariFont,LarkEmojiFont,LarkChineseQuote,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,Segoe UI,PingFang SC,Microsoft Yahei,Hiragino Sans GB,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;;
+        }
+
+        .code {
+            background-color: #f6f8fa;
+            width: 1000px;
+            margin: 0 auto;
+            padding: 10px 40px;
+        }
+
+        body{
+            margin: 10px auto;
+            padding: 8px 20px;
+            width: 1200px;
+            border: 1px solid #dce0e6;
+        }
+
+        .center {
+            margin: 0 auto;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>CSS3介绍</h2>
+    <hr>
+    <p>
+        CSS3在CSS2基础上，增强或新增了许多特性， 弥补了CSS2的众多不足之处，使得Web开发变得更为高效和便捷。<br>
+        <br>
+        CSS3的现状<br>
+        浏览器支持程度不够好，有些需要添加私有前缀<br>
+        <br>
+        移动端支持优于PC端<br>
+        <br>
+        不断改进中<br>
+        <br>
+        应用相对广泛<br>
+        <br>
+        应对的策略：渐进增强<br>
+        （1）坚持渐进增强的原则：让低版本浏览器能正常访问页面，高版本的浏览器用户体验更好。【重要】
+        比如说，同样是一个头像，可能在低版本的浏览器中，头像方的；在高版本的浏览器中，头像是圆的。<br>
+        <br>
+        （2）考虑用户群体。<br>
+        <br>
+        （3）遵照产品的方案。<br>
+        <br>
+        参考链接：<br>
+        <br>
+        <a href="https://www.jianshu.com/p/d313f1108862">渐进增强 VS 优雅降级 | 简书</a><br>
+        <br>
+        <a href="https://www.cnblogs.com/iceflorence/archive/2017/03/27/6625466.html">渐进增强和优雅降级之间的不同（面试题目）</a><br>
+        <br>
+        <strong>浏览器的版本问题</strong><br>
+        由于CSS3普遍存在兼容性问题，为了避免因兼容性带来的干扰，浏览器的建议版本为：<br>
+        <br>
+        Chrome浏览器 version 46+<br>
+        <br>
+        Firefox浏览器 firefox 42+<br>
+        <br>
+        在查看CSS参考手册时，需要注意以下符号：<br>
+    </p>
+    <img src="../resources/doc/CSS手册符号.png">
+
+    <h2>CSS3 选择器</h2>
+    <hr>
+    <p>我们之前学过 CSS 的选择器，比如：</p>
+    <div class="code">
+        <p>
+            div 标签选择器<br>
+            <br>
+            .box 类名选择器<br>
+            <br>
+            #box　id选择器<br>
+            <br>
+            div p 后代选择器<br>
+            <br>
+            div.box 交集选择器<br>
+            <br>
+            div,p,span 并集选择器<br>
+            <br>
+            div>p 子代选择器<br>
+            <br>
+            * : 通配符<br>
+            <br>
+            div+p: 选中div后面相邻的第一个p<br>
+            <br>
+            div~p: 选中的div后面所有的p<br>
+        </p>
+    </div>
+
+    <h3>属性选择器</h3>
+    <p>格式：</p>
+    <img src="../resources/doc/CSS3-选择器1.png" class="center">
+
+    <h3>结构伪类选择器</h3>
+    <p>
+        伪类选择器的标志性符号是 :。<br>
+        <br>
+        CSS中有一些伪类选择器，比如:link、:active、:visited、:hover，这些是动态伪类选择器。<br>
+        <br>
+        CSS3又新增了其它的伪类选择器。这一小段，我们来学习CSS3中的结构伪类选择器：即通过结构来进行筛选。<br>
+    </p>
+    <img src="../resources/doc/CSS3-选择器2.png" class="center">
+
+    <div class="demo">
+        <style>
+            .demo1 li:nth-child(2n) {
+                background-color: #0dcaf0;
+            }
+
+            .demo2 li:nth-child(-n+5) {
+                background-color: #0dcaf0;
+            }
+        </style>
+
+        <div style="float: left;margin-right: 10px">
+            <p>选择单数偶数列nth-child(2n)</p>
+            <ul style="border: 1px solid #0dcaf0; width: 200px;" class="demo1">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li>10</li>
+            </ul>
+        </div>
+        <div style="float: left;">
+            <p>li:nth-child(-n+5)，则表示前5个 li</p>
+            <ul style="border: 1px solid #0dcaf0; width: 200px;" class="demo2">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li>10</li>
+            </ul>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+
+
+    <h3>伪元素选择器</h3>
+    <p>
+        伪元素选择器的标志性符号是 ::。<br>
+        <br>
+        E::before 设置在 元素E 前面（依据对象树的逻辑结构）的内容，配合content属性一起使用。<br>
+        <br>
+        E::after 设置在 元素E 后面（依据对象树的逻辑结构）的内容，配合content属性一起使用。<br>
+        <br>
+        E:after、E:before 在旧版本里是伪类，在 CSS3 这个新版本里是伪元素。新版本里，E:after、E:before会被自动识别为E::after、E::before，按伪元素来对待，这样做的目的是用来做兼容处理。<br>
+    </p>
+    <div>
+
+        <p><strong><br>demo</strong></p>
+        <p>以下例子中，通过伪类在span得前后分别增加内容</p>
+        <style>
+            /*::before 和::after 是通过 css 模拟出的html标签的效果*/
+            .demo3::before{
+                content:"smyhvae";
+                color:red;
+                background-color: pink;
+                width: 50px;
+                height: 50px;
+                display: inline-block;
+            }
+
+            .demo3::after{
+                content:"永不止步";
+                color:yellowgreen;
+            }
+
+            /*给原本的span标签设置一个默认的属性*/
+            .demo3{
+                border: 1px solid #000;
+            }
+
+            .demo4 li::first-letter{
+                color: red;
+                font-size: 30px;
+            }
+        </style>
+        <span class="demo3">生命壹号</span>
+
+        <p>
+            <strong>需要注意：</strong><br>
+            1. 通过伪元素选择器，就可以添加出类似于span标签的效果（记得要结合 content 属性使用）。<br>
+            <br>
+            2. 通过这两个属性添加的伪元素，是行内元素，需要转换成块元素才能设置宽高。<br>
+        </p>
+
+
+        <p>
+            E::first-letter 设置元素 E 里面的第一个字符的样式。<br>
+            <br>
+            E::first-line 设置元素 E 里面的第一行的样式。<br>
+            <br>
+            E::selection 设置元素 E 里面被鼠标选中的区域的样式（一般设置颜色和背景色）。<br>
+            <br>
+        </p>
+
+        <p><strong>demo</strong></p>
+        <p>以下例子中，通过伪类E::first-letter 调整每个首字母大小</p>
+        <ul class="demo4">
+            <li>China on Thursday issued a white paper to elaborate</li>
+            <li>采用绝对定位的方式，将精灵图盖在最上层</li>
+            <li>はアンナです</li>
+        </ul>
+    </div>
+    <img src="../resources/doc/CSS3-选择器3.png" class="center">
+
+
+</body>
+</html>

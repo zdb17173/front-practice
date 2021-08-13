@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- 网页icon -->
+    <link rel="shortcut icon" href="../resources/fluidicon.png"/>
+    <title>css-盒模型</title>
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <h2>盒子模型</h2>
+    <hr/>
+    <div>
+        <p>一个盒子中主要的属性就5个：width、height、padding、border、margin。如下：</p>
+    </div>
+    <div>
+        <ul>
+            <li>width和height：内容的宽度、高度（不是盒子的宽度、高度）。</li>
+            <li>padding：内边距。</li>
+            <li>border：边框。</li>
+            <li>margin：外边距。</li>
+        </ul>
+    </div>
+
+    <div style="margin: 20px">
+        <img src="../resources/doc/标准盒子模型.jpg" >
+    </div>
+    <div style="margin: 20px">
+        <img src="../resources/doc/IE盒子模型.jpg" >
+    </div>
+
+    <h2>padding</h2>
+    <hr/>
+    <p>padding是有背景的，综合属性的写法：(上、右、下、左)（顺时针方向，用空格隔开。margin的道理也是一样的）。padding:30px 20px 40px 100px;</p>
+    <p>小属性的写法： padding-top: 30px; padding-right: 20px; padding-bottom: 40px; padding-left: 100px;</p>
+
+    <h2>border</h2>
+    <hr/>
+    <p>border就是边框。边框有三个要素：像素（粗细）、线型、颜色。</p>
+    <p>border的线形：dotted、dashed、solid、double、groove、ridge、inset、outset</p>
+
+    <p style="border: 2px dotted; margin: 10px">A dotted border</p>
+    <p style="border: 2px dashed; margin: 10px">A dashed border</p>
+    <p style="border: 2px solid; margin: 10px">A solid border</p>
+    <p style="border: 2px double; margin: 10px">A double border</p>
+    <p style="border: 2px groove; margin: 10px">A groove border</p>
+    <p style="border: 2px ridge; margin: 10px">A ridge border</p>
+    <p style="border: 2px inset; margin: 10px">A inset border</p>
+    <p style="border: 2px outset; margin: 10px">A outset border</p>
+
+    <p>大属性写法：border:1px solid red;</p>
+    <p>小属性写法：border-width、border-style、border-color。</p>
+    <p>小属性+方向写法：border-top-width:10px; border-top-style:solid; border-top-color:red; 方向和其他的统一(top left right bottom)</p>
+
+    <h2>demo</h2>
+    <hr/>
+    <style>
+        .div1{
+            width: 0;
+            height: 0;
+            border-top: 30px solid red;
+            /* 通过改变 border-left 和 border-right 中的像素值，来改变三角形的形状 */
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            float: left;
+        }
+    </style>
+    <p>用border画一个三角</p>
+    <div class="div1"></div><div class="div1"></div><div class="div1"></div>
+
+
+</body>
+
+</html>

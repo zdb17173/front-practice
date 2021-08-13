@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- 网页icon -->
+    <link rel="shortcut icon" href="../resources/fluidicon.png"/>
+    <title>css-选择器</title>
+    <style>
+        p {
+            font-size: 16px;
+            font-family: LarkHackSafariFont,LarkEmojiFont,LarkChineseQuote,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,Segoe UI,PingFang SC,Microsoft Yahei,Hiragino Sans GB,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;;
+        }
+    </style>
+</head>
+
+<body>
+    <hr />
+    <h3>CSS 的四种基本选择器</h3>
+    <p>1. 标签选择器：选择器的名字代表 html 页面上的标签。 例如 p { font-size:14px; }</p>
+    <p>2. ID 选择器：规定用#来定义。id不能重复，id不能和标签重名(不能叫body、img、a)，id必须英文开头。 例如#id { font-size:14px; }</p>
+    <p>3. 类选择器：规定用圆点.来定义。例如：.one{ width:800px; }</p>
+    <p>4. 通配符*：匹配任何标签。 * { margin-left: 0px; }</p>
+
+    <hr />
+    <h3>高级选择器</h3>
+    <p>1. 后代选择器。 例如： div p{ font-size:14px; } 这两个标签不一定是连续紧挨着的，只要保持一个后代的关联即可。也就是说，选择的是后代，不一定是儿子。</p>
+    <p>2. 交集选择器：定义的时候紧密相连。 例如： h3.special { font-size:14px; } 选择的元素要求同时满足两个条件：必须是 h3 标签，然后必须是 special 标签。</p>
+    <p>3. 并集选择器：定义的时候用逗号隔开。 p, h1, #mytitle { font-size:14px; }</p>
+
+    <hr />
+    <h3>CSS3选择器</h3>
+    <p>为了测试浏览器 CSS 3 的兼容性，我们可以在网上搜"css3 机器猫"关键字，然后在不同的浏览器中打开如下链接： http://www1.pconline.com.cn/pcedu/specialtopic/css3-doraemon/</p>
+    <p>1. 子代选择器，用符号>表示。 例如：div > p { color:red; } 只有子代生效，孙子辈就不生效。</p>
+    <p>2. 序选择器。 ul li:first-child { color:red; }设置无序列表ul中的第一个li为红色。ul li:last-child { color:red } 设置无序列表ul中的最后一个li为红色。</p>
+    <p>3. 下一个兄弟选择器。 例如：  h3 + p { color: red; } 选择器意思是：选择的是 h3 元素后面紧挨着的第一个兄弟。</p>
+
+    <style>
+        .demo {
+            background-color: papayawhip;
+        }
+
+        /*2. 序选择器。*/
+        ul li:first-child {
+            color: red;
+        }
+
+        ul li:last-child {
+            color: red;
+        }
+
+        /*3. 下一个兄弟选择器。*/
+        h4 + p {
+            color: red;
+        }
+    </style>
+    <div class="demo">
+        <h2>demo</h2>
+        <ul>
+            <li>li 1</li>
+            <li>li 2</li>
+            <li>li 3</li>
+        </ul>
+
+
+        <h4>我是一个标题</h4>
+        <p>我是一个段落</p>
+        <p>我是一个段落</p>
+        <p>我是一个段落</p>
+        <h4>我是一个标题</h4>
+        <p>我是一个段落</p>
+        <p>我是一个段落</p>
+        <p>我是一个段落</p>
+        <h4>我是一个标题</h4>
+        <p>我是一个段落</p>
+        <p>我是一个段落</p>
+        <p>我是一个段落</p>
+        <h4>我是一个标题</h4>
+    </div>
+
+
+</body>
+
+</html>

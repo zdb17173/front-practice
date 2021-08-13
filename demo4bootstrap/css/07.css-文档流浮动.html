@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- 网页icon -->
+    <link rel="shortcut icon" href="../resources/fluidicon.png"/>
+    <title>css-文档流浮动</title>
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+<h2>浮动概要</h2>
+<hr/>
+<div>
+    <ul>
+        <li>标准文档流
+            <ul>
+                <li>标准文档流的特性</li>
+                <li>行内元素和块级元素</li>
+                <li>行内元素和块级元素的相互转换</li>
+            </ul>
+        </li>
+        <li>浮动的性质</li>
+        <li>浮动的清除</li>
+        <li>浏览器的兼容性问题</li>
+        <li>浮动中margin相关</li>
+        <li>关于margin的IE6兼容问题</li>
+    </ul>
+</div>
+
+<h2>标准文档流的特性</h2>
+<hr/>
+<p><strong>（1）空白折叠现象：</strong></p>
+<p>无论多少个空格、换行、tab，都会折叠为一个空格。如果我们想让img标签之间没有空隙，必须紧密连接。</p>
+
+<div>
+    <p>紧密连接的图片，需要写到一行紧挨着。</p>
+    <img src="../resources/1.jpg" width="160px"><img src="../resources/1.jpg" width="160px"><img src="../resources/1.jpg" width="160px">
+</div>
+
+<p><strong>（2）高矮不齐，底边对齐：</strong></p>
+<div>
+    <p>有换行未紧密连接，所有空格会被整合成1个空格。</p>
+    <p>
+        哈哈<span style="font-size: 2rem">呵呵</span>哦哦
+        <img src="../resources/1.jpg" width="160px">
+        <img src="../resources/1.jpg" width="360px">
+    </p>
+</div>
+
+<p><strong>（3）自动换行，一行写不满，换行写。</strong></p>
+
+<p><strong>行内元素和块级元素的区别：</strong>（非常重要）</p>
+
+<p>行内元素：</p>
+
+<ul>
+    <li>与其他行内元素并排；</li>
+    <li>不能设置宽、高。默认的宽度，就是文字的宽度。</li>
+</ul>
+
+<p>块级元素：</p>
+
+<ul>
+    <li>霸占一行，不能与其他任何元素并列；</li>
+    <li>能接受宽、高。如果不设置宽度，那么宽度将默认变为父亲的100%。</li>
+</ul>
+
+<div>
+    <p>
+        <img src="../resources/doc/文本与块级元素.png">
+    </p>
+</div>
+
+<p><strong>行内元素和块级元素的相互转换</strong></p>
+
+<p>可以通过display属性将块级元素和行内元素进行相互转换。display即“显示模式”。</p>
+<p>一旦，给一个块级元素（比如div）设置：display: inline;那么，这个标签将立即变为行内元素，此时它和一个span无异。inline就是“行内”。</p>
+<ul>
+    <li>此时这个div不能设置宽度、高度；</li>
+    <li>此时这个div可以和别人并排了。</li>
+</ul>
+<p>同样的道理，一旦给一个行内元素（比如span）设置：display: block;这个标签将立即变为块级元素，此时它和一个div无异。</p>
+<ul>
+    <li>此时这个span能够设置宽度、高度</li>
+    <li>此时这个span必须霸占一行了，别人无法和他并排</li>
+    <li>如果不设置宽度，将撑满父亲</li>
+</ul>
+
+<!-- 浮动-->
+<h2>脱离标准流</h2>
+<hr/>
+<p>标准流里面的限制非常多，导致很多页面效果无法实现。如果我们现在就要并排、并且就要设置宽高，那该怎么办呢？办法是：移民！脱离标准流！</p>
+<p>css中一共有三种手段，使一个元素脱离标准文档流：</p>
+<ul>
+    <li>（1）浮动</li>
+    <li>（2）绝对定位</li>
+    <li>（3）固定定位</li>
+</ul>
+
+<style>
+    .box{
+        width: 300px;
+        height: 200px;
+    }
+    .box-bg{
+        width: 400px;
+        height: 300px;
+    }
+    .word{
+        font-size: 120px;
+        margin: 0;
+        text-align: center;
+        line-height: 200px;
+    }
+</style>
+
+<div style="height: 800px;">
+    <p>demo: 默认情况下 两个div分别设置宽高，会分两行显示，效果如下：</p>
+    <div class="box" style="background-color: #7cb305;"><p class="word">1</p></div>
+    <div class="box" style="background-color: #0dcaf0;"><p class="word">2</p></div>
+
+    <p>此时，如果给这两个div增加一个浮动属性，比如float: left;，效果如下：</p>
+    <p>这就达到了浮动的效果。此时，两个元素并排了，并且两个元素都能够设置宽度、高度了（这在上一段的标准流中，不能实现，并排的只能是非块级元素不能设置宽度）。</p>
+    <div class="box" style="background-color: #7cb305; float: left"><p class="word">1</p></div>
+    <div class="box" style="background-color: #0dcaf0; float: left"><p class="word">2</p></div>
+</div>
+
+<h4>性质1：浮动的元素脱标</h4>
+<div style="height: 700px;">
+    <p>1设置了float:left; 2没有设置悬浮</p>
+    <p>第一个div标签出现了浮动，于是这个标签在另外一个层面上进行排列。而第二个div还在自己的层面上遵从标准流进行排列。</p>
+    <div class="box" style="background-color: #0dcaf0; float: left"><p class="word">1</p></div>
+    <div class="box-bg" style="background-color: #7cb305;"><p class="word">2</p>></div>
+
+    <p>span是不能设置宽高的</p>
+    <p>但是，一旦设置为浮动之后，即使不转成块级元素，也能够设置宽高了。所以能够证明一件事：**一旦一个元素浮动了，那么，将能够并排了，并且能够设置宽高了。无论它原来是个div还是个span。**所有标签，浮动之后，已经不区分行内、块级了。</p>
+    <span class="box" style="background-color: #7cb305;">未设置浮动的span，设置的宽高无效</span>
+    <span class="box" style="background-color: #0dcaf0; float: left">设置了浮动的span，宽高生效了</span>
+</div>
+
+<h4>性质2：浮动的元素互相贴靠</h4>
+<p>我们给三个div均设置了float: left;属性之后，然后设置宽高。当改变浏览器窗口大小时，可以看到div的贴靠效果：</p>
+<p>同样，float还有一个属性值是right，这个和属性值left是对称的。</p>
+<img src="../resources/doc/float浏览器宽度变化的贴靠效果.gif" width="800px">
+
+<h4>性质3：浮动的元素有“字围”效果</h4>
+<p>文字部分未设置浮动，图片设置了float:right</p>
+<p>div挡住了p，但不会挡住p中的文字，形成“字围”效果。</p>
+<p>总结：标准流中的文字不会被浮动的盒子遮挡住。（文字就像水一样）</p>
+<p>关于浮动我们要强调一点，浮动这个东西，为避免混乱，我们在初期一定要遵循一个原则：永远不是一个东西单独浮动，浮动都是一起浮动，要浮动，大家都浮动。</p>
+
+<div style="background-color: bisque;width: 900px">
+    <div style="float: right"><img src="../resources/1.jpg" width="800px"></div>
+    <p>
+        文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+        文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+        文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+        文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+        文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+        文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+        文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+        文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+        文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+        文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+        文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+        文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+        文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+        文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+    </p>
+
+</div>
+
+<h4>性质4：收缩</h4>
+<p>收缩：一个浮动的元素，如果没有设置width，那么将自动收缩为内容的宽度（这点非常像行内元素）。</p>
+<div style="height: 2rem">
+    <div style="float: left; background-color: #0dcaf0">设置了float: left 未设置宽高</div>
+</div>
+<p>上面的例子中，div本身是块级元素，如果不设置width，它会单独霸占整行；但是，设置div浮动后，它会收缩</p>
+<p></p>
+<p></p>
+
+<h2>浮动的清除</h2>
+<hr/>
+
+<style>
+    .fudongqingchu li {
+        width: 100px;
+        height: 20px;
+        background-color: #7cb305;
+    }
+    .fudongqingchu1 li {
+        float: left;
+    }
+
+    .cl{
+        clear: both;
+    }
+
+    .h16{
+        height: 16px;
+    }
+</style>
+<div>
+    <p>默认情况下，两个div中间包含了两个ul 会如下显示</p>
+    <div>
+        <ul class="fudongqingchu">
+            <li>测试1</li>
+            <li>测试1</li>
+            <li>测试1</li>
+            <li>测试1</li>
+            <li>测试1</li>
+        </ul>
+    </div>
+    <div>
+        <ul class="fudongqingchu">
+            <li>测试2</li>
+            <li>测试2</li>
+            <li>测试2</li>
+            <li>测试2</li>
+            <li>测试2</li>
+        </ul>
+    </div>
+
+    <p>为li设置float:left，此时测试1和测试2 连到一起了，如果我们希望测试1 和测试2在两行 就需要浮动清除</p>
+    <div>
+        <ul class="fudongqingchu fudongqingchu1">
+            <li>测试1</li>
+            <li>测试1</li>
+            <li>测试1</li>
+            <li>测试1</li>
+            <li>测试1</li>
+        </ul>
+    </div>
+    <div>
+        <ul class="fudongqingchu fudongqingchu1">
+            <li>测试2</li>
+            <li>测试2</li>
+            <li>测试2</li>
+            <li>测试2</li>
+            <li>测试2</li>
+        </ul>
+    </div>
+    <div style="height: 30px"></div>
+
+    <p><strong>方法1：给浮动元素的祖先元素加高度</strong></p>
+    <p>造成前言中这个现象的根本原因是：<strong>li的父亲div没有设置高度</strong>，导致这两个div的高度均为0px（我们可以通过网页的审查元素进行查看）。div的高度为零，导致不能给自己浮动的孩子，撑起一个容器。</p>
+    <p>总结：如果一个元素要浮动，那么它的祖先元素一定要有高度。有高度的盒子，才能关住浮动。</p>
+    <div style="height: 30px">
+        <ul class="fudongqingchu fudongqingchu1">
+            <li>测试1</li>
+            <li>测试1</li>
+            <li>测试1</li>
+            <li>测试1</li>
+            <li>测试1</li>
+        </ul>
+    </div>
+    <div style="height: 30px">
+        <ul class="fudongqingchu fudongqingchu1">
+            <li>测试2</li>
+            <li>测试2</li>
+            <li>测试2</li>
+            <li>测试2</li>
+            <li>测试2</li>
+        </ul>
+    </div>
+
+    <p><strong>方法2：clear:both;</strong></p>
+    <p>
+        网页制作中，高度height其实很少出现。为什么？因为能被内容撑高！也就是说，刚刚我们讲解的方法1，工作中用得很少。<br>
+        那么，能不能不写height，也把浮动清除了呢？也让浮动之间，互不影响呢？<br>
+        这个时候，我们可以使用clear:both;这个属性。<br>
+        <br>
+        以下的例子中，我们为第二个div增加了clear:both;<br>
+        clear:both的意思就是：不允许左侧和右侧有浮动对象。<br>
+        这种方法有一个非常大的、致命的问题，它所在的标签，margin属性失效了。读者可以试试看。<br>
+        margin失效的本质原因是：上图中的box1和box2，高度为零。<br>
+    </p>
+    <div >
+        <ul class="fudongqingchu fudongqingchu1">
+            <li>测试1</li>
+            <li>测试1</li>
+            <li>测试1</li>
+            <li>测试1</li>
+            <li>测试1</li>
+        </ul>
+    </div>
+    <div class="cl">
+        <ul class="fudongqingchu fudongqingchu1">
+            <li>测试2</li>
+            <li>测试2</li>
+            <li>测试2</li>
+            <li>测试2</li>
+            <li>测试2</li>
+        </ul>
+    </div>
+
+    <div class="cl"></div>
+
+    <p><strong>方法3：外墙法</strong></p>
+    <p>
+        上面这个例子中，为了防止第二个div贴靠到第二个div，我们可以在这两个div中间用一个新的div隔开，然后给这个新的div设置clear: both;属性；<br>
+        同时，既然这个新的div无法设置margin属性，我们可以给它设置height，以达到margin的效果（曲线救国）。这便是隔墙法。<br>
+    </p>
+    <div >
+        <ul class="fudongqingchu fudongqingchu1">
+            <li>测试1</li>
+            <li>测试1</li>
+            <li>测试1</li>
+            <li>测试1</li>
+            <li>测试1</li>
+        </ul>
+    </div>
+    <div class="cl h16"><p>这里是一堵外墙和li的父级元素div同层clear:both & height:16px</p></div>
+    <div >
+        <ul class="fudongqingchu fudongqingchu1">
+            <li>测试2</li>
+            <li>测试2</li>
+            <li>测试2</li>
+            <li>测试2</li>
+            <li>测试2</li>
+        </ul>
+    </div>
+
+    <div class="cl"></div>
+
+    <p><strong>方法4：内墙法</strong></p>
+    <p>
+        为了讲内墙法，我们先记住一句重要的话：一个父亲是不能被浮动的儿子撑出高度的。<br>
+        (1)以下是一个无宽高div包住一个100px宽高的p
+    </p>
+    <div style="background-color: green">
+        <p style="background-color: red; width: 100px; height: 100px"></p>
+    </div>
+    <p>
+        (2)我们把p设置为float:left 此时div没了，因为父亲是不能被浮动的儿子撑出高度的。
+    </p>
+    <div style="background-color: green">
+        <p style="background-color: red; width: 100px; height: 100px; float: left;"></p>
+    </div>
+    <div class="cl"></div>
+    <p>
+        (3)我们在p的后面加入一个div设置clear:both，效果如下
+    </p>
+    <div style="background-color: green">
+        <p style="background-color: red; width: 100px; height: 100px; float: left;"></p>
+        <div class="cl"></div>
+    </div>
+
+    <div class="cl"></div>
+    <div>
+        <ul class="fudongqingchu fudongqingchu1">
+            <li>测试1</li>
+            <li>测试1</li>
+            <li>测试1</li>
+            <li>测试1</li>
+            <li>测试1</li>
+            <div class="cl"><p>这里是一堵内墙和li同层clear:both & height:16px</p></div>
+        </ul>
+    </div>
+
+    <div>
+        <ul class="fudongqingchu fudongqingchu1">
+            <li>测试2</li>
+            <li>测试2</li>
+            <li>测试2</li>
+            <li>测试2</li>
+            <li>测试2</li>
+        </ul>
+    </div>
+    <div class="cl"></div>
+
+    <p>
+        与外墙法相比，内墙法的优势（本质区别）在于：内墙法可以给它所在的家撑出宽度（让box1有高）。即：box1的高度可以自适应内容。<br>
+        而外墙法，虽然一道墙可以把两个div隔开，但是这两个div没有高，也就是说，无法wrap_content。
+    </p>
+
+    <div class="cl"></div>
+
+
+    <p><strong>清除浮动方法4：overflow:hidden;</strong></p>
+    <p>
+        overflow即“溢出”， hidden即“隐藏”。这个属性的意思是“溢出隐藏”。顾名思义：所有溢出边框的内容，都要隐藏掉。如下：<br>
+        红色边框指的是最外层的父亲div，因为两个子div都是float:left 所以没有高度
+    </p>
+    <div style="border: 2px solid red;">
+        <div style="width: 200px; float: left;border: 1px solid;">
+            <strong>未设置overflow</strong>
+            <p>
+                文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+            </p>
+        </div>
+        <div style="width: 200px; height: 6rem; overflow: hidden; float: left;border: 1px solid;">
+            <strong>设置了overflow</strong>
+            <p>
+                文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+            </p>
+        </div>
+    </div>
+
+    <div class="cl"></div>
+
+    <p>
+       红色边框指的是最外层的父亲div，设置overflow: hidden后，父边框就有高度了
+    </p>
+
+    <div style="border: 2px solid red;overflow: hidden;">
+        <div style="width: 200px; float: left;border: 1px solid;">
+            <strong>未设置overflow</strong>
+            <p>
+                文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+            </p>
+        </div>
+        <div style="width: 200px; height: 6rem; overflow: hidden; float: left;border: 1px solid;">
+            <strong>设置了overflow</strong>
+            <p>
+                文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+            </p>
+        </div>
+    </div>
+
+    <div class="cl"></div>
+
+    <p>
+        <strong>浮动清除的总结</strong><br>
+        1、加高法:<br>
+        工作上，我们绝对不会给所有的盒子加高度，这是因为麻烦，并且不能适应页面的快速变化。<br>
+
+        <br>
+        2、clear:both;法:<br>
+        最简单的清除浮动的方法，就是给盒子增加clear:both；表示自己的内部元素，不受其他盒子的影响。<br>
+
+        <br>
+        3、隔墙法:<br>
+        在两部分浮动元素中间，建一个墙。隔开两部分浮动，让后面的浮动元素，不去追前面的浮动元素。 墙用自己的身体当做了间隙。<br>
+
+        <br>
+        4、overflow:hidden;法: <br>
+        这个属性的本意，就是将所有溢出盒子的内容，隐藏掉。但是，我们发现这个东西能够用于浮动的清除。<br>
+        我们知道，一个父亲，不能被自己浮动的儿子撑出高度，但是，如果这个父亲加上了overflow:hidden；<br>
+        那么这个父亲就能够被浮动的儿子撑出高度了。这个现象，不能解释，就是浏览器的偏方。 <br>
+        并且,overflow:hidden;能够让margin生效。<br>
+    </p>
+
+
+    <p><strong>最终demo</strong></p>
+    <p>使用清除浮动技术，实现以下图片效果</p>
+    <img src="../resources/doc/清除浮动例子.png">
+
+    <p>实现效果如下：</p>
+    <style>
+        .title {
+            float: left;
+        }
+        .date {
+            float: right;
+        }
+        .ggli {
+            border-bottom: 1px dashed darkgrey;
+
+        }
+        .line {
+            height: 2px; width: 100%;
+            background-image: linear-gradient(to right, yellow, green);
+        }
+        .hd {
+            overflow: hidden;
+            padding: 0px;
+        }
+        .head {
+            border-top: 2px dashed darkgrey;
+            margin-bottom: 2px;
+            padding-top: 3px;
+            height: 10px;
+            background-image: linear-gradient(to right, rgba(143, 241, 33, 0.08), rgba(143, 241, 33, 0.08));
+            background-origin: content-box;
+            background-repeat:no-repeat;
+        }
+        .jt {
+            background-image: url("../resources/箭头.png");
+            background-size: 11px ;
+            background-position: center;
+            height: 21px;
+            width: 21px;
+            background-repeat:no-repeat;
+        }
+    </style>
+    <div style="width: 500px">
+        <div class="head"></div>
+        <div class="hd" style="border-left: 4px solid #0a53be; margin-bottom: 3px">
+            <span class="title" style="margin-left: 10px">通知公告</span><span class="date">更多<a href="#">&gt;&gt;</a></span>
+        </div>
+        <div class="line"></div>
+        <ul class="hd">
+            <li class="ggli"><span class="title jt"></span> <span class="title">哈哈哈哈哈哈哈哈哈哈哈哈哈</span><span class="date">2021年11日11</span></li>
+            <li class="ggli"><span class="title jt"></span> <span class="title">哈哈哈哈哈哈哈哈哈哈哈哈哈</span><span class="date">2021年11日11</span></li>
+            <li class="ggli"><span class="title jt"></span> <span class="title">哈哈哈哈哈哈哈哈哈哈哈哈哈</span><span class="date">2021年11日11</span></li>
+        </ul>
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

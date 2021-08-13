@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- 网页icon -->
+    <link rel="shortcut icon" href="../resources/fluidicon.png"/>
+    <title>css-伪类</title>
+
+    <style>
+        .dataintable{
+
+            margin: 15px auto;
+            border-collapse: collapse;
+            border: 1px solid #aaa;
+        }
+        table.dataintable th {
+            vertical-align: baseline;
+            padding: 10px 10px 10px 10px;
+            background-color: #3F3F3F;
+            border: 1px solid #3F3F3F;
+            text-align: left;
+            color: #fff;
+        }
+        table.dataintable tr {
+            vertical-align: text-top;
+            padding: 9px 9px 9px 9px;
+            border: 1px solid #aaa;
+        }
+
+        table.dataintable td {
+            vertical-align: text-top;
+            padding: 9px 9px 9px 9px;
+            border: 1px solid #aaa;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <hr />
+    <h3>伪类</h3>
+    <p>伪类：同一个标签，根据其不同的种状态，有不同的样式。这就叫做“伪类”。伪类用冒号来表示。</p>
+    <p>比如div是属于box类，这一点很明确，就是属于box类。但是a属于什么类？不明确。因为需要看用户点击前是什么状态，点击后是什么状态。所以，就叫做“伪类”。</p>
+    <p>静态伪类和动态伪类，伪类选择器分为两种：静态伪类、动态伪类。</p>
+    <p>（1）静态伪类：只能用于超链接的样式。:link 超链接点击之前  :visited 链接被访问过之后</p>
+    <p>（2）动态伪类：针对所有标签都适用的样式。:hover “悬停”：鼠标放到标签上的时候 :active “激活”： 鼠标点击标签，但是不松手时。 :focus 是某个标签获得焦点时的样式（比如某个输入框获得焦点）</p>
+    <p></p>
+
+
+    <hr />
+    <h3>全部伪类列表</h3>
+    <table class="dataintable">
+        <tbody><tr>
+            <th style="width: 20%;">选择器</th>
+            <th style="width: 22%;">例子</th>
+            <th>例子描述</th>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :active 选择器">:active</a></td>
+            <td>a:active</td>
+            <td>选择活动的链接。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :checked 选择器">:checked</a></td>
+            <td>input:checked</td>
+            <td>选择每个被选中的 &lt;input&gt; 元素。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :disabled 选择器">:disabled</a></td>
+            <td>input:disabled</td>
+            <td>选择每个被禁用的 &lt;input&gt; 元素。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :empty 选择器">:empty</a></td>
+            <td>p:empty</td>
+            <td>选择没有子元素的每个 &lt;p&gt; 元素。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :enabled 选择器">:enabled</a></td>
+            <td>input:enabled</td>
+            <td>选择每个已启用的 &lt;input&gt; 元素。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :first-child 选择器">:first-child</a></td>
+            <td>p:first-child</td>
+            <td>选择作为其父的首个子元素的每个 &lt;p&gt; 元素。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :first-of-type 选择器">:first-of-type</a></td>
+            <td>p:first-of-type</td>
+            <td>选择作为其父的首个 &lt;p&gt; 元素的每个 &lt;p&gt; 元素。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :focus 选择器">:focus</a></td>
+            <td>input:focus</td>
+            <td>选择获得焦点的 &lt;input&gt; 元素。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :hover 选择器">:hover</a></td>
+            <td>a:hover</td>
+            <td>选择鼠标悬停其上的链接。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :in-range 选择器">:in-range</a></td>
+            <td>input:in-range</td>
+            <td>选择具有指定范围内的值的 &lt;input&gt; 元素。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :invalid 选择器">:invalid</a></td>
+            <td>input:invalid</td>
+            <td>选择所有具有无效值的 &lt;input&gt; 元素。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :lang(language) 选择器">:lang(<i>language</i>)</a></td>
+            <td>p:lang(it)</td>
+            <td>选择每个 lang 属性值以 "it" 开头的 &lt;p&gt; 元素。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :last-child 选择器">:last-child</a></td>
+            <td>p:last-child</td>
+            <td>选择作为其父的最后一个子元素的每个 &lt;p&gt; 元素。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :last-of-type 选择器">:last-of-type</a></td>
+            <td>p:last-of-type</td>
+            <td>选择作为其父的最后一个 &lt;p&gt; 元素的每个 &lt;p&gt; 元素。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :link 选择器">:link</a></td>
+            <td>a:link</td>
+            <td>选择所有未被访问的链接。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :not(selector) 选择器">:not(<i>selector</i>)</a></td>
+            <td>:not(p)</td>
+            <td>选择每个非 &lt;p&gt; 元素的元素。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :nth-child(n) 选择器">:nth-child(<i>n</i>)</a></td>
+            <td>p:nth-child(2)</td>
+            <td>选择作为其父的第二个子元素的每个 &lt;p&gt; 元素。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :nth-last-child(n) 选择器">:nth-last-child(<i>n</i>)</a></td>
+            <td>p:nth-last-child(2)</td>
+            <td>选择作为父的第二个子元素的每个&lt;p&gt;元素，从最后一个子元素计数。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :nth-last-of-type(n) 选择器">:nth-last-of-type(<i>n</i>)</a></td>
+            <td>p:nth-last-of-type(2)</td>
+            <td>选择作为父的第二个&lt;p&gt;元素的每个&lt;p&gt;元素，从最后一个子元素计数</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :nth-of-type(n) 选择器">:nth-of-type(<i>n</i>)</a></td>
+            <td>p:nth-of-type(2)</td>
+            <td>选择作为其父的第二个 &lt;p&gt; 元素的每个 &lt;p&gt; 元素。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :only-of-type 选择器">:only-of-type</a></td>
+            <td>p:only-of-type</td>
+            <td>选择作为其父的唯一 &lt;p&gt; 元素的每个 &lt;p&gt; 元素。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :only-child 选择器">:only-child</a></td>
+            <td>p:only-child</td>
+            <td>选择作为其父的唯一子元素的 &lt;p&gt; 元素。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :optional 选择器">:optional</a></td>
+            <td>input:optional</td>
+            <td>选择不带 "required" 属性的 &lt;input&gt; 元素。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :out-of-range 选择器">:out-of-range</a></td>
+            <td>input:out-of-range</td>
+            <td>选择值在指定范围之外的 &lt;input&gt; 元素。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :read-only 选择器">:read-only</a></td>
+            <td>input:read-only</td>
+            <td>选择指定了 "readonly" 属性的 &lt;input&gt; 元素。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :read-write 选择器">:read-write</a></td>
+            <td>input:read-write</td>
+            <td>选择不带 "readonly" 属性的 &lt;input&gt; 元素。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :required 选择器">:required</a></td>
+            <td>input:required</td>
+            <td>选择指定了 "required" 属性的 &lt;input&gt; 元素。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :root 选择器">:root</a></td>
+            <td>root</td>
+            <td>选择元素的根元素。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :target 选择器">:target</a></td>
+            <td>#news:target</td>
+            <td>选择当前活动的 #news 元素（单击包含该锚名称的 URL）。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :valid 选择器">:valid</a></td>
+            <td>input:valid</td>
+            <td>选择所有具有有效值的 &lt;input&gt; 元素。</td>
+        </tr>
+
+        <tr>
+            <td><a title="CSS :visited 选择器">:visited</a></td>
+            <td>a:visited</td>
+            <td>选择所有已访问的链接。</td>
+        </tr>
+        </tbody></table>
+
+    <style type="text/css">
+        ul {
+            /*去掉网页默认样式*/
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .nav{
+            width: 960px;
+            height: 50px;
+            border: 1px solid red;
+            margin: 100px auto;
+        }
+        .nav ul{
+            /*去掉小圆点*/
+            list-style: none;
+        }
+        .nav ul li{
+            float: left;
+            width: 120px;
+            height: 50px;
+            /*让内容水平居中*/
+            text-align: center;
+            /*让行高等于nav的高度，就可以保证内容垂直居中*/
+            line-height: 50px;
+        }
+        .nav ul li a{
+            display: block;
+            width: 120px;
+            height: 50px;
+        }
+        /*两个伪类的属性，可以用逗号隔开*/
+        .nav ul li a:link , .nav ul li a:visited{
+            text-decoration: none;
+            background-color: purple;
+            color:white;
+        }
+        .nav ul li a:hover{
+            background-color: orange;
+        }
+
+        input:focus{
+            border:3px solid #FF6F3D;
+            color:white;
+            background-color:#6a6a6a;
+        }
+
+        /*
+        鼠标放在标签上时显示蓝色
+        */
+        label:hover{
+            color:blue;
+        }
+
+        /*
+        点击标签鼠标没有松开时显示红色
+        */
+        label:active{
+            color:red;
+        }
+
+        /* 鼠标移动到表格上 整行变色 */
+        .tabledemo{
+            margin-top: 20px;
+            width: 300px;
+            height: 200px;
+            border: 1px solid blue;
+            /*border-collapse属性：对表格的线进行折叠*/
+            border-collapse: collapse;
+        }
+
+        /*鼠标悬停时，让当前行显示#868686这种灰色*/
+        .tabledemo tr:hover{
+            background: #868686;
+        }
+
+        /*每个单元格的样式*/
+        .tabledemo td{
+            border:1px solid red;
+        }
+    </style>
+    <div class="demo">
+        <h2>demo</h2>
+        <div class="nav">
+            <ul>
+                <li><a href="#">网站栏目</a></li>
+                <li><a href="#">网站栏目</a></li>
+                <li><a href="#">网站栏目</a></li>
+                <li><a href="#">网站栏目</a></li>
+                <li><a href="#">网站栏目</a></li>
+                <li><a href="#">网站栏目</a></li>
+                <li><a href="#">网站栏目</a></li>
+                <li><a href="#">网站栏目</a></li>
+            </ul>
+
+            <label>点击输入框变色:</label>
+            <input style="margin-top: 20px" type="text"/>
+
+            <table class="tabledemo">
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>
