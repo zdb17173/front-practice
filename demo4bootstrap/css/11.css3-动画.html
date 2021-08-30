@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- 网页icon -->
+    <link rel="shortcut icon" href="../resources/fluidicon.png"/>
+    <title>css3-选择器详解</title>
+
+    <style>
+        a {
+            color: #0a53be;
+            font-size: 20px;
+            text-decoration-line: none;
+        }
+
+        p {
+            font-size: 16px;
+            font-family: LarkHackSafariFont,LarkEmojiFont,LarkChineseQuote,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,Segoe UI,PingFang SC,Microsoft Yahei,Hiragino Sans GB,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;;
+        }
+
+        .code {
+            background-color: #f6f8fa;
+            width: 1000px;
+            margin: 10px auto;
+            padding: 10px 40px;
+        }
+
+        body{
+            margin: 10px auto;
+            padding: 8px 20px;
+            width: 1200px;
+            border: 1px solid #dce0e6;
+        }
+
+        .center {
+            margin: 0 auto;
+            display: block;
+        }
+
+        code {
+            font-size: 16px;
+            font-family: LarkHackSafariFont,LarkEmojiFont,LarkChineseQuote,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,Segoe UI,PingFang SC,Microsoft Yahei,Hiragino Sans GB,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;;
+            background-color: rgba(27, 31, 35, 0.05);
+            border-radius: 6px;
+            font-size: 85%;
+            margin: 0;
+            padding: .2em .4em;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>前言</h3>
+    <hr>
+    <p>本文主要内容：</p>
+
+    <ul>
+
+        <li><p>过渡：transition</p></li>
+
+        <li><p>2D 转换 transform</p></li>
+
+        <li><p>3D 转换 transform</p></li>
+
+        <li><p>动画：animation</p></li>
+    </ul>
+
+    <h3>过渡</h3>
+    <hr>
+    <p>
+        <code>transition</code>的中文含义是过渡。过渡是CSS3中具有颠覆性的一个特征，可以实现元素<strong>不同状态间的平滑过渡</strong>（补间动画）， 经常用来制作动画效果。
+    </p>
+
+    <h5>transition包含以下属性</h5>
+    <ul>
+        <li>
+            <p><code>transition-property: all;</code>  如果希望所有的属性都发生过渡，就使用all。</p>
+        </li>
+        <li>
+            <p><code>transition-duration: 1s;</code> 过渡的持续时间。</p>
+        </li>
+        <li>
+            <p><code>transition-timing-function: linear;</code>  运动曲线。属性值可以是：</p>
+            <ul>
+                <li><code>linear</code> 线性</li>
+                <li><code>ease</code>  减速</li>
+                <li><code>ease-in</code> 加速</li>
+                <li><code>ease-out</code> 减速</li>
+                <li><code>ease-in-out</code>  先加速后减速</li>
+            </ul>
+        </li>
+        <li>
+            <p><code>transition-delay: 1s;</code> 过渡延迟。多长时间后再执行这个过渡动画。</p>
+        </li>
+    </ul>
+
+    <p>上面的四个属性也可以写成<strong>综合属性</strong>：</p>
+
+    <p class="code">
+        transition: 让哪些属性进行过度 过渡的持续时间 运动曲线 延迟时间;<br>
+        <br>
+        transition: all 3s linear 0s;<br>
+    </p>
+
+
+    <h5>例子</h5>
+    <style>
+        .demo1 {
+
+        }
+
+        .demo1-cover:hover {
+            background-color: rgba(255,255,255,0);
+            transition: all 1s linear 0s;
+        }
+
+        .demo1-cover {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255,255,255,1);
+            top: 0px;
+        }
+
+        .demo2 {
+            border: 2px solid;
+            width: 350px;
+            position: relative;
+            overflow:hidden;
+            float: left;
+        }
+
+        .demo2-img{
+            width: 350px;
+            transition: all 0.5s linear 0s;
+            transform: scale(1.0);
+        }
+        .demo2-img:hover {
+            transition: all 1s cubic-bezier(.02,.55,.58,1) .3s;
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        .demo3 {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo3:hover {
+            box-shadow: 0 0 15px #AAA;
+        }
+
+        .demo3-info {
+            position: absolute;
+            width: 100%;
+            bottom: -80px;
+            background-color: #ffcd39;
+            transition: all .5s;
+        }
+
+        .demo3:hover .demo3-info {
+            bottom: 0px;
+            transition: all 0.5s linear 0s;
+        }
+
+
+    </style>
+    <div >
+        <div style="float: left;">
+            <div><p>鼠标移动显示</p></div>
+            <div class="demo1" style="border: 2px solid;width: 350px;position: relative;">
+                <div>
+                    <img src="../resources/1.jpg" width="350px">
+                </div>
+                <div>
+                    <p>标题标题标题</p>
+                    <p>正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文</p>
+                </div>
+
+                <div class="demo1-cover"> </div>
+            </div>
+        </div>
+
+        <div style="float: left;margin-left: 30px;">
+            <div><p>鼠标移动图片放大</p></div>
+            <div class="demo2">
+                <img class="demo2-img" src="../resources/1.jpg" width="350px">
+            </div>
+        </div>
+
+        <div style="float: left;margin-left: 30px;">
+            <div><p>鼠标移动弹出消息框</p></div>
+            <div class="demo3">
+                <img src="../resources/1.jpg" width="350px">
+                <div class="demo3-info">
+                    <p>摘要摘要摘要摘要摘要摘要摘要摘要摘要</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div style="clear: both;"></div>
+    </div>
+
+
+    <h3>2D 转换</h3>
+    <hr>
+
+    <p>
+        <strong>转换</strong>是 CSS3 中具有颠覆性的一个特征，可以实现元素的<strong>位移、旋转、变形、缩放</strong>，甚至支持矩阵方式。<br>
+        <br>
+        转换再配合过渡和动画，可以取代大量早期只能靠 Flash 才可以实现的效果。<br>
+        <br>
+        在 CSS3 当中，通过 <code>transform</code> 转换来实现 2D 转换或者 3D 转换。<br>
+        <br>
+        2D转换包括：缩放、移动、旋转。<br>
+    </p>
+
+    <ul>
+        <li><p>缩放 transform: scale(x, y); 参数解释： x：表示水平方向的缩放倍数。y：表示垂直方向的缩放倍数。如果只写一个值就是等比例缩放。</p></li>
+        <li><p>位移 transform: translate(水平位移, 垂直位移); 参数解释：参数为百分比，相对于自身移动。正值：向右和向下。 负值：向左和向上。如果只写一个值，则表示水平移动。</p></li>
+        <li><p>旋转 transform: rotate(角度); 参数解释：正值 顺时针；负值：逆时针。</p></li>
+        <li><p>倾斜 transform: skew(x-angle,y-angle)(角度); 参数解释：定义沿着 X 和 Y 轴的 2D 倾斜转换。</p></li>
+    </ul>
+
+    <h4>1.缩放</h4>
+
+    <p>
+        下面例子中，鼠标移动至“2”上，2会被X轴放2倍，Y轴放1.2倍。但是不会影响其他元素定位，并不会把兄弟元素挤走。
+    </p>
+    <p class="code">
+        transform: scale(x, y);<br>
+        <br>
+        transform: scale(2, 0.5);<br>
+    </p>
+
+    <style>
+        .word{
+            font-size: 120px;
+            margin: 0;
+            text-align: center;
+            line-height: 200px;
+        }
+
+        .demo4{
+            transition: all 0.5s linear 0s;
+        }
+
+        .demo4:hover{
+            transform: scale(2, 1.2);
+        }
+    </style>
+    <div style="margin-top: 20px;">
+        <div style="width: 200px; height: 200px; float: left; margin-right: 30px; background-color: #ffcd39;">
+            <p class="word">1</p>
+        </div>
+        <div class="demo4" style="width: 200px; height: 200px; float: left; margin-right: 30px; background-color: green;">
+            <p class="word">2</p>
+        </div>
+        <div style="width: 200px; height: 200px; float: left; margin-right: 30px; background-color: #ffcd39;">
+            <p class="word">3</p>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+
+    <h4>2.位移</h4>
+    <p>
+        <strong>参数解释</strong>：<br>
+        <br>
+        参数为百分比，相对于自身移动。<br>
+        <br>
+        正值：向右和向下。 负值：向左和向上。如果只写一个值，则表示水平移动。<br>
+    </p>
+    <p class="code">
+        transform: translate(水平位移, 垂直位移);<br>
+        <br>
+        transform: translate(-50%, -50%);<br>
+    </p>
+    <style>
+        .demo5{
+            transition: all 0.5s linear 0s;
+        }
+
+        .demo5:hover{
+            transform: translate(50px, -10px);
+        }
+
+        .demo6 {
+            position: absolute;
+            left: 50%;
+            top: calc(50% + 100px);
+            transform: translate(-50%, -50%);
+        }
+    </style>
+    <p>例1：鼠标悬停“5”之上时 transform: translate(50px, -10px);</p>
+    <div style="margin-top: 20px;">
+        <div style="width: 200px; height: 200px; float: left; margin-right: 30px; background-color: #ffcd39;">
+            <p class="word">1</p>
+        </div>
+        <div class="demo5" style="width: 200px; height: 200px; float: left; margin-right: 30px; background-color: green;">
+            <p class="word">2</p>
+        </div>
+        <div style="width: 200px; height: 200px; float: left; margin-right: 30px; background-color: #ffcd39;">
+            <p class="word">3</p>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+
+    <p>
+        例2：利用偏移 translate 来做脱标的居中效果<br>
+        <br>
+        父亲盒子，设定css为：position: relative; height: 400px;width: 100%；<br>
+        <br>
+        绿色盒子，设定css为： left: 50%;top: calc(50% + 100px);transform: translate(-50%, -50%);position: absolute;<br>
+        50%+100px 100px为盒子的一半，所以紧贴底部
+    </p>
+    <div style="margin-top: 20px;border: 2px solid;position: relative; height: 400px;width: 100%">
+        <div class="demo6" style="width: 200px; height: 200px; float: left; margin-right: 30px; background-color: green;">
+            <p class="word">1</p>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+
+    <h4>3.旋转</h4>
+    <p>
+        transform: rotate(角度);<br>
+        <br>
+        transform: rotate(45deg);<br>
+        <br>
+        参数解释：正值 顺时针；负值：逆时针。
+    </p>
+
+    <style>
+        .demo7 {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            margin: 50px auto;
+            color: #fff;
+            font-size: 50px;
+            transition: all 2s; /* 过渡：让盒子在进行 transform 转换的时候，有个过渡期 */
+        }
+
+        /* rotate（角度）旋转 */
+        .demo7:hover {
+            transform: rotate(-405deg); /* 鼠标悬停时，让盒子进行旋转 */
+        }
+    </style>
+    <div style="border: 2px solid;margin-bottom: 20px;">
+        <p>使用旋转+过渡制作旋转效果</p>
+        <div class="demo7">
+            <p class="word">张</p>
+        </div>
+    </div>
+
+    <div style="position: relative;width: 100%;height: 300px; overflow: hidden;border: 2px solid">
+        <p>使用旋转制作背景</p>
+        <div style="background-color: #0dcaf0;position: absolute;right: 100px;top:-200px;width: 400px;height: 1000px;transform: rotate(50deg);"></div>
+        <div style="background-color: #0b89f0;position: absolute;right: 0px;top:-200px;width: 400px;height: 1000px;transform: rotate(40deg);"></div>
+        <div></div>
+    </div>
+
+
+    <h3>3D 转换</h3>
+    <hr>
+
+    <h4>1、旋转：rotateX、rotateY、rotateZ</h4>
+    <p>
+        <img src="../resources/doc/3D坐标系.png">
+    </p>
+    <p>
+        如上图所示，伸出左手，让拇指和食指成“L”形，大拇指向右，食指向上，中指指向前方。拇指、食指和中指分别代表X、Y、Z轴的正方向，这样我们就建立了一个左手坐标系。<br>
+        <br>
+        浏览器的这个平面，是X轴、Y轴；垂直于浏览器的平面，是Z轴。<br>
+        <br>
+        旋转的方向：（左手法则）<br>
+        <br>
+        左手握住旋转轴，竖起拇指指向旋转轴的正方向，正向就是其余手指卷曲的方向。<br>
+        <br>
+        从上面这句话，我们也能看出：所有的3d旋转，对着正方向去看，都是顺时针旋转。<br>
+    </p>
+
+    <p class="code">
+        transform: rotateX(360deg);    //绕 X 轴旋转360度<br>
+        <br>
+        transform: rotateY(360deg);    //绕 Y 轴旋转360度<br>
+        <br>
+        transform: rotateZ(360deg);    //绕 Z 轴旋转360度<br>
+    </p>
+
+    <style>
+        .demo8 {
+            width: 426px;
+            height: 340px;
+            background-image: url("../resources/1.jpg");
+            transition: transform 10s;
+        }
+
+        .demo8:hover {
+            transform: rotateX(360deg);
+        }
+
+
+        /*图片翻转效果*/
+        .demo9-parent {
+            width: 300px;
+            height: 300px;
+            /*border: 1px solid #000;*/
+            margin: 50px auto;
+            position: relative;
+        }
+
+        .demo9box {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            /*border: 1px solid #000;*/
+            border-radius: 50%;
+            transition: all 2s;
+            backface-visibility: hidden;/*当变为背后时，隐藏*/
+        }
+
+        .demo9box-1 {
+            background: url(../resources/百度钱包.png) left 0 no-repeat; /*默认显示图片的左半边*/
+        }
+
+        .demo9box-2 {
+            background: url(../resources/百度钱包.png) right 0 no-repeat;
+            transform: rotateY(180deg); /*让图片的右半边默认时，旋转180度，就可以暂时隐藏起来*/
+
+        }
+
+        .demo9-parent:hover .demo9box-1 {
+            transform: rotateY(180deg); /*让图片的左半边转消失*/
+        }
+
+        .demo9-parent:hover .demo9box-2 {
+            transform: rotateY(0deg); /*让图片的左半边转出现*/
+        }
+    </style>
+
+    <h4>图片翻转效果1</h4>
+    <div>
+        <div class="demo8"></div>
+    </div>
+
+    <h4>图片翻转效果2</h4>
+    <div style="width: calc(100%-40px);height: 400px;background-color: #0dcaf0;padding: 20px;">
+        <div class="demo9-parent">
+            <div class="demo9box demo9box-1"></div>
+            <div class="demo9box demo9box-2"></div>
+        </div>
+    </div>
+
+    <h4>2、移动：translateX、translateY、translateZ</h4>
+    <p class="code">
+        格式：<br>
+        <br>
+        transform: translateX(100px);    //沿着 X 轴移动<br>
+        <br>
+        transform: translateY(360px);    //沿着 Y 轴移动<br>
+        <br>
+        transform: translateZ(360px);    //沿着 Z 轴移动<br>
+    </p>
+    <style>
+
+    </style>
+    <div style="margin-top: 20px;">
+        <div style="width: 200px; height: 200px; float: left; margin-right: 30px; background-color: #ffcd39;">
+            <p class="word">1</p>
+        </div>
+        <div class="demo5" style="width: 200px; height: 200px; float: left; margin-right: 30px; background-color: green;">
+            <p class="word">2</p>
+        </div>
+        <div style="width: 200px; height: 200px; float: left; margin-right: 30px; background-color: #ffcd39;">
+            <p class="word">3</p>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+
+    <h4>3、透视：perspective</h4>
+    <p>
+        电脑显示屏是一个 2D 平面，图像之所以具有立体感（3D效果），其实只是一种视觉呈现，通过透视可以实现此目的。<br>
+        <br>
+        透视可以将一个2D平面，在转换的过程当中，呈现3D效果。但仅仅只是视觉呈现出 3d 效果，并不是正真的3d。<br>
+        <br>
+        格式有两种写法：<br>
+        <br>
+        作为一个属性，设置给父元素，作用于所有3D转换的子元素<br>
+        <br>
+        作为 transform 属性的一个值，做用于元素自身。<br>
+    </p>
+    <p class="code">
+        perspective: 500px;
+    </p>
+
+    <h4>4、3D呈现 transform-style</h4>
+    <p>
+        3D元素构建是指某个图形是由多个元素构成的，可以给这些元素的父元素设置transform-style: preserve-3d
+        来使其变成一个真正的3D图形。属性值可以如下：
+    </p>
+    <p class="code">
+        transform-style: preserve-3d;     /* 让 子盒子 位于三维空间里 */ <br>
+        <br>
+        transform-style: flat;            /* 让子盒子位于此元素所在的平面内（子盒子被扁平化） */<br>
+    </p>
+
+    <style>
+        .pers250 {
+            perspective: 250px;
+        }
+
+        .pers350 {
+            perspective: 350px;
+        }
+
+        .pers500 {
+            perspective: 500px;
+        }
+
+        .pers650 {
+            perspective: 650px;
+        }
+
+        .container {
+            width: 150px;
+            height: 150px;
+            margin: 75px 0 0 75px;
+            border: none;
+        }
+
+        .cube {
+            width: 100%;
+            height: 100%;
+            perspective-origin: 150% 150%;
+            transform-style: preserve-3d;
+        }
+
+        .face {
+            display: block;
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: none;
+            line-height: 100px;
+            font-family: sans-serif;
+            font-size: 60px;
+            color: white;
+            text-align: center;
+        }
+
+        /* Define each face based on direction */
+        .front {
+            background: rgba(0, 0, 0, 0.3);
+            transform: translateZ(50px);
+        }
+
+        .back {
+            background: rgba(0, 255, 0, 1);
+            color: black;
+            transform: rotateY(180deg) translateZ(50px);
+        }
+
+        .right {
+            background: rgba(196, 0, 0, 0.7);
+            transform: rotateY(90deg) translateZ(50px);
+        }
+
+        .left {
+            background: rgba(0, 0, 196, 0.7);
+            transform: rotateY(-90deg) translateZ(50px);
+        }
+
+        .top {
+            background: rgba(196, 196, 0, 0.7);
+            transform: rotateX(90deg) translateZ(50px);
+        }
+
+        .bottom {
+            background: rgba(196, 0, 196, 0.7);
+            transform: rotateX(-90deg) translateZ(50px);
+        }
+    </style>
+
+    <h5>透视+3D的综合demo</h5>
+    <p>以下是一个3D的盒子默认情况下perspective: 250px</p>
+    <div class="container">
+        <div class="cube pers250">
+            <div class="face front">1</div>
+            <div class="face back">2</div>
+            <div class="face right">3</div>
+            <div class="face left">4</div>
+            <div class="face top">5</div>
+            <div class="face bottom">6</div>
+        </div>
+    </div>
+
+    <p>以下是一个3D的盒子perspective: 350px</p>
+    <div class="container">
+        <div class="cube pers350">
+            <div class="face front">1</div>
+            <div class="face back">2</div>
+            <div class="face right">3</div>
+            <div class="face left">4</div>
+            <div class="face top">5</div>
+            <div class="face bottom">6</div>
+        </div>
+    </div>
+
+    <p>以下是一个3D的盒子perspective: 650px</p>
+    <div class="container">
+        <div class="cube pers650">
+            <div class="face front">1</div>
+            <div class="face back">2</div>
+            <div class="face right">3</div>
+            <div class="face left">4</div>
+            <div class="face top">5</div>
+            <div class="face bottom">6</div>
+        </div>
+    </div>
+
+
+    <h3>动画</h3>
+    <hr>
+
+    <p>
+        我们刚刚在调用动画时，animation属性的格式如下：<br>
+        <br>
+        animation属性的格式如下：<br>
+    </p>
+
+    <p class="code">
+        animation: 定义的动画名称  持续时间  执行次数  是否反向  运动曲线 延迟执行。(infinite 表示无限次)<br>
+        <br>
+        animation: move1 1s  alternate linear 3;<br>
+        <br>
+        animation: move2 4s;<br>
+    </p>
+
+    <p>可以看出，这里的 animation 是综合属性，接下来，我们把这个综合属性拆分看看。</p>
+
+
+    <p>（1）动画名称：</p>
+    <p class="code">
+        animation-name: move;
+    </p>
+
+    <p>（2）执行一次动画的持续时间：</p>
+    <p class="code">
+        animation-duration: 4s;<br>
+        <br>
+        备注：上面两个属性，是必选项，且顺序固定。<br>
+    </p>
+
+    <p>（3）动画的执行次数：</p>
+    <p class="code">
+        animation-iteration-count: 1;       //iteration的含义表示迭代<br>
+        属性值infinite表示无数次。<br>
+    </p>
+
+    <p>（4）动画的方向：</p>
+    <p class="code">
+        animation-direction: alternate;<br>
+        属性值：normal 正常，alternate 反向。<br>
+    </p>
+
+    <p>（5）动画延迟执行：</p>
+    <p class="code">
+        animation-delay: 1s;<br>
+    </p>
+
+    <p>（6）设置动画结束时，盒子的状态：</p>
+    <p class="code">
+        animation-fill-mode: forwards;<br>
+        属性值： forwards：保持动画结束后的状态（默认）， backwards：动画结束后回到最初的状态。<br>
+    </p>
+
+    <p>（7）运动曲线：</p>
+    <p class="code">
+        animation-timing-function: ease-in;<br>
+    </p>
+
+    <p>
+        属性值可以是：linear ease-in-out steps()等。<br>
+        <br>
+        注意，如果把属性值写成** <code> steps()</code>，<strong>则表示动画</strong>不是连续执行**，而是间断地分成几步执行。
+        我们接下来专门讲一下属性值 <code> steps()。</code><br>
+    </p>
+
+    <h4>steps()的效果</h4>
+    <p>
+        我们还是拿上面的例子来举例，如果在调用动画时，我们写成：
+    </p>
+
+    <p class="code">
+        animation: move2 4s steps(2);
+    </p>
+
+
+    <style>
+        .demo10 {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-color: #0dcaf0;
+            animation: demo-move 5s steps(1) infinite;
+        }
+
+        @keyframes demo-move {
+            0% {
+                top: 30px;
+                left: 0px;
+                background-color: #ffcd39;
+            }
+
+            25% {
+                top: 30px;
+                left: 200px;
+                background-color: #d63384;
+            }
+
+            50% {
+                top: 200px;
+                left: 200px;
+                background-color: #0d6efd;
+            }
+
+            75%{
+                top: 200px;
+                left: 0px;
+                background-color: #6a1a21;
+            }
+        }
+
+
+    </style>
+    <h4>steps demo</h4>
+    <div style="background-color: #f6f8fa; height: 400px; width: 100%; margin-right: 10px;">
+        <div style="margin: 1px auto;position: relative;width: 500px">
+            <div class="demo10"></div>
+        </div>
+    </div>
+
+
+    <style>
+        .shark {
+            width: 509px;
+            height: 270px; /*盒子的宽高是一帧的宽高*/
+            border: 1px solid #000;
+            margin: 20px auto;
+            background: url(../resources/鲨鱼.png) left top; /* 让图片一开始位于 0 px的位置*/
+            animation: sharkRun 1s steps(8) infinite; /* 一秒之内，从顶部移动到底部，分八帧， */
+        }
+
+        @keyframes sharkRun {
+            0% {
+            }
+
+            /* 270 * 8 = 2160 */
+            100% {
+                background-position: left -2160px; /* 动画结束时，让图片位于最底部 */
+            }
+        }
+
+        .leftMove {
+            width: 509px;
+            height: 270px;
+            animation: sharkBoxRun 20s linear infinite;
+        }
+
+        @keyframes sharkBoxRun {
+            0% {
+                transform: translateX(-600px);
+            }
+
+            100% {
+                transform: translateX(3000px);
+            }
+        }
+
+
+    </style>
+    <h4>鲨鱼游动demo</h4>
+    <p>
+        鲨鱼.png是一张270X2160的长图，作为背景默认top为0，通过动画steps 8次，每次top + 270。鲨鱼即可原地游动起来。 <br>
+
+    </p>
+
+    <div style="background-color: #f6f8fa; height: 800px; width: 100%; margin-right: 10px; margin-top: 20px;">
+        <div style="margin: 0px auto;padding-top: 5px; width: 509px;">
+            <p>鲨鱼原地动</p>
+        </div>
+        <div class="shark">
+
+        </div>
+
+        <div style="margin: 0px auto;padding-top: 5px; width: 509px;">
+            <p>鲨鱼横向移动</p>
+        </div>
+        <div class="leftMove">
+            <div class="shark">
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
