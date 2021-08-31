@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- 网页icon -->
+    <link rel="shortcut icon" href="../resources/fluidicon.png"/>
+    <title>css-文字</title>
+
+    <style>
+        .header {
+            list-style: none;
+
+            position: absolute;
+            top: 0px;
+            height: 70px;
+            line-height: 30px;
+        }
+
+        .title {
+            float: left;
+            margin-right: 30px;
+            background-color: #ffcd39;
+            border-radius: 10px;
+            padding: 2px 5px;
+        }
+
+        .title a {
+            text-decoration: none;
+            color: #333;
+            font: 16px "Microsoft Yahei";
+        }
+    </style>
+</head>
+<body>
+    <ul class="header">
+        <li class="title"><a href="01.css-文字-滚动-光标-列表-滤镜.html" target="my_iframe">1.滚动光标列表滤镜</a></li>
+        <li class="title"><a href="02.css-背景.html" target="my_iframe">2.背景</a></li>
+        <li class="title"><a href="03.css-选择器.html" target="my_iframe">3.选择器</a></li>
+        <li class="title"><a href="04.css-伪类.html" target="my_iframe">4.伪类</a></li>
+
+        <li class="title"><a href="05.css-继承性.html" target="my_iframe">5.继承性</a></li>
+        <li class="title"><a href="06.css-盒模型.html" target="my_iframe">6.盒模型</a></li>
+        <li class="title"><a href="07.css-文档流浮动.html" target="my_iframe">7.文档流浮动</a></li>
+        <li class="title"><a href="08.css-定位.html" target="my_iframe">8.定位</a></li>
+
+        <li class="title"><a href="09.css3-CSS3选择器详解.html" target="my_iframe">9.CSS3选择器详解</a></li>
+        <li class="title"><a href="10.css3-文本盒模型边框背景渐变.html" target="my_iframe">10.文本盒模型边框背景渐变</a></li>
+        <li class="title"><a href="11.css3-动画.html" target="my_iframe">11.动画基础</a></li>
+        <li class="title"><a href="12.css3-flex布局.html" target="my_iframe">12.flex布局</a></li>
+
+        <li class="title"><a href="13.css-字体.html" target="my_iframe">13.字体</a></li>
+        <li class="title"><a href="14.css3-边框.html" target="my_iframe">14.css3边框</a></li>
+
+    </ul>
+
+    <iframe name="my_iframe" id="my_iframe" src="01.css-文字-滚动-光标-列表-滤镜.html"
+            style="width: 100%; margin-top: 50px;"
+            scrolling="yes" οnlοad="setIframeHeight()"></iframe>
+
+    <script type="text/javascript">
+        function setIframeHeight(iframe) {
+            if (iframe) {
+                iframe.height= 0;
+                iframe.height = window.innerHeight - 80;
+            }
+        };
+
+        window.onload = function () {
+            setIframeHeight(document.getElementById('my_iframe'));
+        };
+    </script>
+
+
+</body>

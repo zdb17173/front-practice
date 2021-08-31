@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- 网页icon -->
+    <link rel="shortcut icon" href="../resources/fluidicon.png"/>
+    <title>css3-选择器详解</title>
+
+    <style>
+        * {
+            font-size: 20px;
+        }
+
+        a {
+            color: #0a53be;
+            font-size: 20px;
+            text-decoration-line: none;
+        }
+
+        p {
+            font-size: 16px;
+            font-family: LarkHackSafariFont,LarkEmojiFont,LarkChineseQuote,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,Segoe UI,PingFang SC,Microsoft Yahei,Hiragino Sans GB,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;;
+        }
+
+        .code {
+            background-color: #f6f8fa;
+            width: 1000px;
+            margin: 10px auto;
+            padding: 10px 40px;
+        }
+
+        body{
+            margin: 10px auto;
+            padding: 8px 20px;
+            width: 1200px;
+            border: 1px solid #dce0e6;
+        }
+
+        .center {
+            margin: 0 auto;
+            display: block;
+        }
+
+        code {
+            font-size: 16px;
+            font-family: LarkHackSafariFont,LarkEmojiFont,LarkChineseQuote,-apple-system,BlinkMacSystemFont,Helvetica Neue,Arial,Segoe UI,PingFang SC,Microsoft Yahei,Hiragino Sans GB,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;;
+            background-color: rgba(27, 31, 35, 0.05);
+            border-radius: 6px;
+            font-size: 85%;
+            margin: 0;
+            padding: .2em .4em;
+        }
+
+        /*表格默认样式修改*/
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin: 10px 0px;
+        }
+
+        td,th{
+            border: 1px solid grey;
+            font-size: 16px;
+            line-height: 1.5;
+            padding: 6px 15px;
+        }
+
+        table tr:nth-child(2n),th {
+            background-color: #f5f5f5;
+        }
+
+    </style>
+</head>
+
+<body>
+<h3>前言</h3>
+<hr>
+<p>
+    开发人员可以为自已的网页指定特殊的字体（将指定字体提前下载到站点中），无需考虑用户电脑上是否安装了此特殊字体。从此，把特殊字体处理成图片的方式便成为了过去。<br>
+    <br>
+    支持程度比较好，甚至 IE 低版本的浏览器也能支持。<br>
+</p>
+
+
+<h3>字体的常见格式</h3>
+<hr>
+<p>
+    <strong>TureTpe格式：(.ttf)</strong><br>
+    .ttf 字体是Windows和Mac的最常见的字体，是一种RAW格式。<br>
+    <br>
+    支持这种字体的浏览器有IE9+、Firefox3.5+、Chrome4+、Safari3+、Opera10+、iOS Mobile、Safari4.2+。<br>
+    <br>
+    <strong>OpenType格式：(.otf)</strong><br>
+    .otf 字体被认为是一种原始的字体格式，其内置在TureType的基础上。<br>
+    <br>
+    支持这种字体的浏览器有Firefox3.5+、Chrome4.0+、Safari3.1+、Opera10.0+、iOS Mobile、Safari4.2+。<br>
+    <br>
+    <strong>Web Open Font Format格式：(.woff)</strong><br>
+    woff字体是Web字体中最佳格式，他是一个开放的TrueType/OpenType的压缩版本，同时也支持元数据包的分离。<br>
+    <br>
+    支持这种字体的浏览器有IE9+、Firefox3.5+、Chrome6+、Safari3.6+、Opera11.1+。<br>
+    <br>
+    <strong>Embedded Open Type格式：(.eot)</strong><br>
+    .eot字体是IE专用字体，可以从TrueType创建此格式字体，支持这种字体的浏览器有IE4+。<br>
+    <br>
+    <strong>SVG格式：(.svg)</strong><br>
+    .svg字体是基于SVG字体渲染的一种格式。<br>
+    <br>
+    支持这种字体的浏览器有Chrome4+、Safari3.1+、Opera10.0+、iOS Mobile Safari3.2+。<br>
+    <br>
+    下载字体的网站推荐：<br>
+    <br>
+    <a href="http://www.zhaozi.cn/" target="_blank">http://www.zhaozi.cn/</a><br>
+    <br>
+    <a href="http://www.youziku.com/" target="_blank">http://www.youziku.com/</a><br>
+</p>
+
+<h5>（1）第一步：使用font-face声明字体</h5>
+
+<p class="code">
+    @font-face {<br>
+        font-family: 'webfont';<br>
+        src: url('webfont.eot'); /* IE9*/<br>
+        src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */<br>
+        url('webfont.woff') format('woff'), /* chrome、firefox */<br>
+        url('webfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/<br>
+        url('webfont.svg#webfont') format('svg'); /* iOS 4.1- */<br>
+    }<br>
+</p>
+
+<h5>（2）第二步：定义使用webfont的样式</h5>
+
+<p class="code">
+    .web-font{<br>
+        font-family:"webfont" !important;<br>
+        font-size:16px;font-style:normal;<br>
+        -webkit-font-smoothing: antialiased;<br>
+        -webkit-text-stroke-width: 0.2px;<br>
+        -moz-osx-font-smoothing: grayscale;<br>
+    }<br>
+</p>
+
+<h5>（3）第三步：为文字加上对应的样式</h5>
+
+<p class="code">
+ class="web-font"
+</p>
+
+
+<h4>字体demo</h4>
+<style>
+    @font-face {
+        font-family: 'AlibabaSans';
+        src: url('../font/AlibabaSans-Black.otf') format('opentype') /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    }
+
+    @font-face {
+        font-family: 'pangmenzhengdao';
+        src: url('../font/pangmenzhengdao2.0.ttf') format('truetype');
+    }
+
+    .word1 {
+        font-family: 'AlibabaSans', 'pangmenzhengdao';
+        font: 40px 'pangmenzhengdao';
+        line-height: 40px;
+        font-weight: bold;
+    }
+</style>
+
+<p class="word1">汉字文字的撒大dsad的撒旦撒旦大DSADJKSADJKdsajdksad2323241@!#!@#%@%</p>
+
+
+<h3>字体图标（阿里的 iconfont 网站举例）</h3>
+<hr>
+<p>
+    我们其实可以把图片制作成字体。常见的做法是：把网页中一些小的图标，借助工具生成一个字体包，然后就可以像使用文字一样使用图标了。这样做的优点是：<br>
+    <br>
+    1、将所有图标打包成字体库，减少请求；<br>
+    <br>
+    2、具有矢量性，可保证清晰度；<br>
+    <br>
+    3、使用灵活，便于维护。<br>
+    <br>
+    4、也就是说，我们可以把这些图标当作字体来看待，凡是字体拥有的属性（字体大小、颜色等），均适用于图标。<br>
+</p>
+
+<style>
+    @font-face {
+        font-family: 'iconfont';
+        src: url('../font/iconfont.ttf') format('truetype') /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    }
+
+    .word2 {
+        font-family: "iconfont" !important;
+        font-size: 30px;
+        font-style: normal;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .icon::before{
+        /*&#xe628;*/
+        content:"\e633";
+        /*position: absolute;*/
+        /*left:10px;*/
+        /*top:0px;*/
+        font-family: iconfont;
+        color:red;
+    }
+</style>
+
+<h4>图标字体demo</h4>
+<p>
+    以下例子使用了http://iconfont.cn/的图标字体，找到想要的图标，加入购物车。然后下载下来。根据下载的zip包中的提示<br>
+    编写了下面demo。<br>
+</p>
+<p class="word2">
+    &#xe633;&#xe634;&#xe635;&#xe636;&#xe637;&#xe638;&#xe639;&#xe63a;
+</p>
+
+<h4>使用场景，伪元素(::before)添加图标</h4>
+<div  style="width: cala(100%-20px); height: 100px; background-color: #dce0e6;padding: 20px;">
+    <p class="icon">扫码付款</p>
+    <span class="icon" >我是span</span>
+    <div class="icon">divvvvvvvvvvv</div>
+</div>
+
+
+<h3>其他相相关网站介绍</h3>
+<hr>
+<ul>
+    <li>Font Awesome 使用介绍：http://fontawesome.dashgame.com/</li>
+    <li>定制自已的字体图标库：http://iconfont.cn/</li>
+    <li>定制自已的字体图标库：https://icomoon.io/</li>
+    <li>SVG素材：https://www.iconfont.cn/</li>
+    <li>Bootstrap 网站的图标字体：http://www.bootcss.com/p/font-awesome/</li>
+</ul>
+
+
+
+
+</body>
+</html>
