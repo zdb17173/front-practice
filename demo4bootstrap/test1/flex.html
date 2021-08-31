@@ -1,0 +1,91 @@
+<html>
+
+<style>
+    .container {
+        /*max-width: 1200px;*/
+        width: 100%;
+    }
+
+    .row {
+        --bs-gutter-x:1.5rem;
+        --bs-gutter-y:0;
+        display:flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .col {
+        flex: 0 0 auto;
+        width: calc(25% - 2px);
+    }
+
+    .w25 {
+        width: calc(25% - 2px);
+    }
+
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+
+        padding-top: .75rem;
+        padding-bottom: .75rem;
+        background-color: rgba(86, 61, 124, .15);
+        border: 1px solid rgba(86, 61, 124, .2);
+    }
+</style>
+
+<body>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col bd-placeholder-img" style="order: 6">
+                col-1
+            </div>
+            <div class="col bd-placeholder-img" style="order: 5">
+                col-2
+            </div>
+            <div class="col bd-placeholder-img" style="order: 4">
+                col-3
+            </div>
+            <div class="col bd-placeholder-img" style="order: 3">
+                col-4
+            </div>
+            <div class="col bd-placeholder-img" style="order: 2">
+                col-5
+            </div>
+            <div class="col bd-placeholder-img" style="order: 1">
+                col-6
+            </div>
+        </div>
+
+        <div>
+            <div class="w25 bd-placeholder-img">
+                col-2
+            </div>
+            <div class="w25 bd-placeholder-img">
+                col-2
+            </div>
+            <div class="w25 bd-placeholder-img">
+                col-2
+            </div>
+            <div class="w25 bd-placeholder-img">
+                col-2
+            </div>
+            <div class="w25 bd-placeholder-img">
+                col-2
+            </div>
+            <div class="w25 bd-placeholder-img">
+                col-2
+            </div>
+        </div>
+    </div>
+
+<!--<div class="demo">-->
+<!--<div class="box"></div>-->
+<!--</div>-->
+</body>
+</html>

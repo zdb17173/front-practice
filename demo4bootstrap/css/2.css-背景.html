@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- 网页icon -->
+    <link rel="shortcut icon" href="../resources/fluidicon.png"/>
+    <title>css-背景</title>
+
+    <!--
+        css2.1 中，常见的背景属性有以下几种：（经常用到，要记住）
+
+            1. background-color:#ff99ff; 设置元素的背景颜色。
+
+            2. background-image:url(images/2.gif); 将图像设置为背景。
+
+            3. background-repeat: no-repeat; 设置背景图片是否重复及如何重复，默认平铺满。（重要）
+
+                no-repeat不要平铺；
+                repeat-x横向平铺；
+                repeat-y纵向平铺。
+            4. background-position:center top; 设置背景图片在当前容器中的位置。
+
+            5. background-attachment:scroll; 设置背景图片是否跟着滚动条一起移动。 属性值可以是：scroll（与fixed属性相反，默认属性）、fixed（背景就会被固定住，不会被滚动条滚走）。
+
+            6. 另外还有一个综合属性叫做background，它的作用是：将上面的多个属性写在一个声明中。
+
+        CSS3 中，新增了一些background属性：
+
+            1. background-origin
+
+            2. background-clip 背景裁切
+
+            3. background-size 调整尺寸
+
+            4. 多重背景
+
+        颜色
+            rgb颜色: background-color: rgb(255,0,0); 红绿蓝的叠加
+            rgba颜色: background-color: rgba(0, 0, 255, 0.3); RGBA 即：Red 红、Green 绿、Blue 蓝、Alpha 透明度
+            十六进制: background-color: #ff0000;
+            HSLA颜色: background-color: hsla(240,50%,50%,0.4);
+                > H 色调，取值范围 0~360。0或360表示红色、120表示绿色、240表示蓝色。
+                > S 饱和度，取值范围 0%~100%。值越大，越鲜艳。
+                > L 亮度，取值范围 0%~100%。亮度最大时为白色，最小时为黑色。
+                > A 透明度，取值范围 0~1。
+    -->
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+    <hr />
+    <h3>1. HSLA色卡</h3>
+    <div>
+        <img src="../resources/HSLA.png" width="400px"/>
+    </div>
+    <hr />
+
+    <h3>2. 默认背景-会平铺满整个位置</h3>
+    <div style="background-image: url(../resources/大寒.png); width: 1000px; height: 400px;border: 1px solid #000c17;"></div>
+    <hr />
+
+    <h3>3. 设置不平铺-no-repeat</h3>
+    <div style="background-repeat: no-repeat; background-image: url(../resources/大寒.png); width: 1000px; height: 200px;border: 1px solid #000c17;">
+    </div>
+    <hr />
+
+    <style>
+        .position {
+            float: left;
+        }
+
+        .position > p {
+            font-size: 20px;
+            color: red;
+        }
+    </style>
+    <h3>4. background-position: {描述左右的词top 、center、bottom 或左偏移量px} {描述上下的词left、center、right 或上偏移量px}</h3>
+    <div style="height: 400px">
+        <div class="position" style="background-position:center top; background-image: url(../resources/大寒.png); background-repeat: no-repeat; width: 400px; height: 400px;border: 1px solid #000c17;">
+        </div>
+        <div class="position" style="background-position:right center ; background-image: url(../resources/大寒.png); background-repeat: no-repeat; width: 400px; height: 400px;border: 1px solid #000c17;">
+        </div>
+        <div class="position" style="background-position:left center; background-image: url(../resources/大寒.png); background-repeat: no-repeat; width: 400px; height: 400px;border: 1px solid #000c17;">
+        </div>
+        <div class="position" style="background-position:0px 120px; background-image: url(../resources/大寒.png); background-repeat: no-repeat; width: 400px; height: 400px;border: 1px solid #000c17;">
+        </div>
+    </div>
+
+    <hr />
+    <h3>5. background-attachment 设置背景图片是否固定。</h3>
+    <div style="height: 500px">
+        <div class="position" style="border: 1px solid #000c17;">
+            <h4>local 背景随着内部滚动而动（内层）</h4>
+            <div  style="background-attachment:local; background-image: url(../resources/大寒.png); background-repeat: no-repeat; overflow-x: auto; width: 400px; height: 400px;border: 1px solid #000c17;">
+                <p>汉字1</p><p>汉字2</p><p>汉字3</p><p>汉字4</p><p>汉字5</p><p>汉字6</p><p>汉字7</p><p>汉字8</p><p>汉字9</p><p>汉字10</p><p>汉字11</p><p>汉字12</p><p>汉字13</p><p>汉字14</p><p>汉字15</p><p>汉字1</p><p>汉字2</p><p>汉字3</p><p>汉字4</p><p>汉字5</p><p>汉字6</p><p>汉字7</p><p>汉字8</p><p>汉字9</p><p>汉字10</p><p>汉字11</p><p>汉字12</p><p>汉字13</p><p>汉字14</p><p>汉字15</p>
+            </div>
+        </div>
+        <div class="position" style="border: 1px solid #000c17;">
+            <h4>scroll 默认背景不动</h4>
+            <div  style="background-image: url(../resources/大寒.png); background-repeat: no-repeat; overflow-x: auto; width: 400px; height: 400px;border: 1px solid #000c17;">
+                <p>汉字1</p><p>汉字2</p><p>汉字3</p><p>汉字4</p><p>汉字5</p><p>汉字6</p><p>汉字7</p><p>汉字8</p><p>汉字9</p><p>汉字10</p><p>汉字11</p><p>汉字12</p><p>汉字13</p><p>汉字14</p><p>汉字15</p><p>汉字1</p><p>汉字2</p><p>汉字3</p><p>汉字4</p><p>汉字5</p><p>汉字6</p><p>汉字7</p><p>汉字8</p><p>汉字9</p><p>汉字10</p><p>汉字11</p><p>汉字12</p><p>汉字13</p><p>汉字14</p><p>汉字15</p>
+            </div>
+        </div>
+        <div class="position" style="border: 1px solid #000c17;">
+            <h4>fixed 背景随着网页滚动而动（最外层）</h4>
+            <div style="background-attachment:fixed; background-image: url(../resources/1.jpg); background-repeat: no-repeat; overflow-x: auto; width: 400px; height: 400px;border: 1px solid #000c17;">
+                <p>汉字1</p><p>汉字2</p><p>汉字3</p><p>汉字4</p><p>汉字5</p><p>汉字6</p><p>汉字7</p><p>汉字8</p><p>汉字9</p><p>汉字10</p><p>汉字11</p><p>汉字12</p><p>汉字13</p><p>汉字14</p><p>汉字15</p><p>汉字1</p><p>汉字2</p><p>汉字3</p><p>汉字4</p><p>汉字5</p><p>汉字6</p><p>汉字7</p><p>汉字8</p><p>汉字9</p><p>汉字10</p><p>汉字11</p><p>汉字12</p><p>汉字13</p><p>汉字14</p><p>汉字15</p>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+    <h3>6. background-size 属性：背景尺寸</h3>
+    <div style="height: 600px">
+        <div class="position" style="border: 1px solid #000c17;">
+            <h4>background-size: 300px 300px <br/> 固定像素，可以使用50% 50%; 100% auto;</h4>
+            <div style="background-size: 300px 300px; background-image: url(../resources/1.jpg); background-repeat: no-repeat; width: 500px; height: 500px;">
+            </div>
+        </div>
+
+        <div class="position" style="border: 1px solid #000c17;">
+            <h4>background-size: cover <br/> 填充满容器 长宽比不变 超出部分隐藏</h4>
+            <div style="background-size: cover; background-image: url(../resources/1.jpg); background-repeat: no-repeat; width: 500px; height: 500px;">
+            </div>
+        </div>
+
+        <div class="position" style="border: 1px solid #000c17;">
+            <h4>background-size: contain <br/> 完整地显示 长宽比不变 可能留白</h4>
+            <div style="background-size: contain; background-image: url(../resources/1.jpg); background-repeat: no-repeat; width: 500px; height: 500px;">
+            </div>
+        </div>
+    </div>
+
+    <hr />
+    <h3>7. background-origin 属性：控制背景从什么地方开始显示</h3>
+    <div style="height:650px">
+        <div class="position" style="border: 1px solid #000c17;">
+            <h4 style="margin: 10px">background-origin: padding-box <br/> 内边距开始显示背景图（默认值）</h4>
+            <div style="background-origin: padding-box; border: 10px solid rgba(0,0,0,0.3); padding: 10px; margin: 10px; background-image: url(../resources/1.jpg); background-repeat: no-repeat; width: 500px; height: 500px;">
+            </div>
+        </div>
+
+        <div class="position" style="border: 1px solid #000c17;">
+            <h4 style="margin: 10px">background-origin: border-box <br/> 边框开始显示背景图（虚化部分为边框，盖住背景图）</h4>
+            <div style="background-origin: border-box; border: 10px solid rgba(0,0,0,0.3); padding: 10px; margin: 10px; background-image: url(../resources/1.jpg); background-repeat: no-repeat; width: 500px; height: 500px;">
+            </div>
+        </div>
+
+        <div class="position" style="border: 1px solid #000c17;">
+            <h4 style="margin: 10px">background-origin: content-box <br/> 内容区域开始显示背景图</h4>
+            <div style="background-origin: content-box; border: 10px solid rgba(0,0,0,0.3); padding: 10px; margin: 10px; background-image: url(../resources/1.jpg); background-repeat: no-repeat; width: 500px; height: 500px;">
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .multibackground {
+            background-image:
+                    url(../resources/scroll-top.webp),/* */
+                    url(../resources/scroll-bottom.webp),/* */
+                    url(../resources/scroll-middle.webp);/* */
+            background-repeat: no-repeat, no-repeat, repeat-y;
+            background-position: center top, center bottom, center top;
+        }
+
+        .multibackground > p {
+            margin: 0 auto;
+            width: 8rem;
+            padding:1rem;
+        }
+    </style>
+    <hr />
+    <h3>8. 同时设置多个背景</h3>
+    <div style="height:800px" class="multibackground">
+        <p></p>
+        <p></p>
+        <p>多个背景图会一层一层叠在一起。</p>
+        <p>像是 Photoshop 里的图层。罗列背景图的顺序决定着哪个图像在上层。</p>
+        <p>列出的第一个图像在最顶层，第二个 图像在第二层，最后一个图像在最底层。</p>
+        <p>以前面的代码为例，卷轴的上部scrollTop.jpg</p>
+        <p>在卷轴的底部scrollBottom.jpg之上，</p>
+        <p>而底部又在卷轴中部scrollMiddle.jpg之上。</p>
+    </div>
+
+    <style>
+        .linear-gradient > div {
+            width: 500px;
+            height: 100px;
+            margin: 10px auto;
+            border: 1px solid #000;
+        }
+
+        /* 语法：
+            linear-gradient(方向，起始颜色，终止颜色);
+            方向：to left   to right  to top   to bottom 　角度　30deg
+            起始颜色
+            终止颜色
+        */
+        .linear-gradient > div:nth-child(1) {
+            background-image: linear-gradient(to right, yellow, green);
+        }
+
+        /* 不写方向，表示默认的方向是：从上往下 */
+        .linear-gradient > div:nth-child(2) {
+            background-image: linear-gradient(yellow, green);
+        }
+
+        /* 方向可以指定角度 */
+        .linear-gradient > div:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            background-image: linear-gradient(135deg, yellow, green);
+        }
+
+        /* 0%的位置开始出现黄色，40%的位置开始出现红色的过度。70%的位置开始出现绿色的过度，100%的位置开始出现蓝色 */
+        .linear-gradient > div:nth-child(4) {
+            background-image: linear-gradient(to right,
+            yellow 0%,
+            red 40%,
+            green 70%,
+            blue 100%);
+
+        }
+
+        /* 颜色之间，出现突变 */
+        .linear-gradient > div:nth-child(5) {
+            background-image: linear-gradient(45deg,
+            yellow 0%,
+            yellow 25%,
+            blue 25%,
+            blue 50%,
+            red 50%,
+            red 75%,
+            green 75%,
+            green 100%
+            );
+        }
+
+        .linear-gradient > div:nth-child(6) {
+            background-image: linear-gradient(to right,
+            #000 0%,
+            #000 25%,
+            #fff 25%,
+            #fff 50%,
+            #000 50%,
+            #000 75%,
+            #fff 75%,
+            #fff 100%
+            );
+        }
+
+        .nav {
+            width: 800px;
+            text-align: center;
+            padding-top: 50px;
+            margin: 0 auto;
+            background-color: #f8fcd4;
+        }
+
+        /*设置按钮基本样式*/
+        .nav a {
+            display: inline-block;
+            width: 100px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 14px;
+            color: #fff;
+            margin-bottom: 30px;
+            text-decoration: none;
+            border: 1px solid #e59500;
+            background-color: #FFB700;
+            background-image: linear-gradient(
+                    to bottom,
+                    #FFB700 0%,
+                    #FF8C00 100%
+            );
+        }
+
+        .test1,.test2{
+            width: 200px;height: 200px;display: inline-block;
+            background-image: linear-gradient(45deg,red 25%,transparent 25%),linear-gradient(-45deg,red 25%,transparent 25%),linear-gradient(45deg,transparent 75%,red 75%),linear-gradient(-45deg,transparent 75%,red 75%);}
+        .test2{
+            background-size: 20% 20%;
+        }
+
+        .test3{
+            width: 720px;height: 405px;display: inline-block;
+            background: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0.8)),url('../resources/1.jpg');
+        }
+
+        .test4{
+            width: 720px;height: 405px;display: inline-block;
+            background: url('../resources/1.jpg');
+        }
+
+        .radial-gradient{
+            height: 350px;
+        }
+
+        .radial-gradient > div {
+            width: 250px;
+            height: 250px;
+            margin: 20px;
+            border: 1px solid #000;
+            float: left;
+        }
+
+        /*
+            径向渐变：
+            radial-gradient（辐射的半径大小, 中心的位置，起始颜色，终止颜色）;
+            中心点位置：at  left  right  center bottom  top
+        */
+
+        /*辐射半径为100px，中心点在中间*/
+        .radial-gradient > div:nth-child(1) {
+            background-image: radial-gradient(100px at center, yellow, green);
+        }
+
+        /*中心点在左上角*/
+        .radial-gradient > div:nth-child(3) {
+            background-image: radial-gradient(at left top, yellow, green);
+        }
+
+        .radial-gradient > div:nth-child(2) {
+            background-image: radial-gradient(at 50px 50px, yellow, green);
+        }
+
+        /*设置不同的颜色渐变*/
+        .radial-gradient > div:nth-child(4) {
+            background-image: radial-gradient(100px at center,
+            yellow 0%,
+            green 30%,
+            blue 60%,
+            red 100%);
+        }
+
+        /*如果辐射半径的宽高不同，那就是椭圆*/
+        .radial-gradient > div:nth-child(5) {
+            background-image: radial-gradient(100px 50px at center, yellow, green);
+        }
+    </style>
+    <hr />
+    <h3>9. 背景颜色渐变</h3>
+    <div class="linear-gradient">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div class="nav">
+        <div>使用线性渐变设置按钮颜色</div>
+        <a href="javascript:;">导航1</a>
+        <a href="javascript:;">导航2</a>
+        <a href="javascript:;">导航3</a>
+        <a href="javascript:;">导航4</a>
+        <a href="javascript:;">导航5</a>
+        <a href="javascript:;">导航6</a>
+    </div>
+
+    <div class="nav">
+        <div>使用线性渐变设置方格子</div>
+        <div class="test1"></div>
+        <div class="test2"></div>
+    </div>
+
+    <!--
+        background-image: radial-gradient(辐射的半径大小, 中心的位置, 起始颜色, 终止颜色);
+
+        中心点的位置可以是：at left right center bottom top。如果以像素为单位，则中心点参照的是盒子的左上角。
+        background-image: radial-gradient(at left top, yellow, green);
+        background-image: radial-gradient(at 50px 50px, yellow, green);
+    -->
+    <div class="nav">
+        <div>使用径向渐变设置透明</div>
+        <div class="test3"></div>
+        <div class="test4"></div>
+    </div>
+
+    <div class="radial-gradient">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <style>
+        .div111 {
+            width: 320px;
+            height: 320px;
+            border: 1px solid red;
+            background: url(../resources/2.jpg) no-repeat;
+            background-size: cover;
+
+            /* 裁剪出圆形区域 */
+            clip-path: circle(50px at 100px 100px);
+            transition: clip-path .4s;
+        }
+        .div111:hover{
+            /* 鼠标悬停时，裁剪出更大的圆形 */
+            clip-path: circle(80px at 100px 100px);
+        }
+
+        .img {
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+            background: url(../resources/2.jpg) no-repeat;
+            background-size: cover;
+        }
+
+        .div222 {
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            margin-bottom: 20px;
+        }
+
+        .div2222 {
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%, 10% 10%);
+            margin-bottom: 20px;
+        }
+
+    </style>
+    <hr />
+    <h3>10. clip-path：裁剪出元素的部分区域做展示</h3>
+
+    <p>鼠标悬停时，放大裁剪的区域。clip-path属性的好处是，即使做了任何裁剪，容器的占位大小是不变的。</p>
+    <p>比如上方代码中，容器的占位大小一直都是 320px * 320px。这样的话，也方便我们做一些动画效果。</p>
+    <div class="nav">
+        <div class="div111"></div>
+
+        <div class="img div222"></div>
+        <div class="img div2222"></div>
+    </div>
+</body>
+
+</html>

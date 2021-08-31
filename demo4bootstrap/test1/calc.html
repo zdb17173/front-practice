@@ -1,0 +1,102 @@
+<html>
+
+    <style>
+        .demo {
+            width: 300px;
+            background: rgba(255,0,0,0.1);
+            padding: 3px 0;
+        }
+        .box {
+            width: 100%;
+            background: rgba(0,255,0,0.1);
+            height: 50px;
+            padding: 10px;
+            border: 5px solid green;
+            width: 90%;
+            width: calc(100% - (10px + 5px) * 2);
+        }
+
+        #header {
+            background: #f60;
+            padding: 20px;
+            width: 984px;/*Fallback for browsers that don't support the calc() function*/
+            width: -moz-calc(100% - 40px);
+            width: -webkit-calc(100% - 40px);
+            width: calc(100% - 40px);
+        }
+        #footer {
+            clear:both;
+            background: #000;
+            padding: 20px;
+            color: #fff;
+            width: 984px;/* Fallback for browsers that don't support the calc() function */
+            width: -moz-calc(100% - 40px);
+            width: -webkit-calc(100% - 40px);
+            width: calc(100% - 40px);
+        }
+        #main {
+            border: 8px solid #B8C172;
+            float: left;
+            margin-bottom: 20px;
+            margin-right: 20px;
+            padding: 20px;
+            width: 704px; /* Fallback for browsers that don't support the calc() function */
+            width: -moz-calc(75% - 20px * 2 - 8px * 2);
+            width: -webkit-calc(75% - 20px * 2 - 8px * 2);
+            width: calc(75% - 20px * 2 - 8px * 2);
+            position: relative;
+        }
+        #accessory {
+            border: 8px solid #B8C172;
+            float: right;
+            padding: 10px;
+            width: 208px; /* Fallback for browsers that don't support the calc() function */
+            width: -moz-calc(25% - 10px * 2 - 8px * 2 - 20px);
+            width: -webkit-calc(25% - 10px * 2 - 8px * 2 - 20px);
+            width: calc(25% - 10px * 2 - 8px * 2 - 20px);
+        }
+
+        .content {
+            min-height: 10rem;
+            background-color: rgba(255,0,0,0.1);
+            border: 1px solid rgba(39,41,43,0.1);
+        }
+        .content1 {
+            top: 0;
+            position: absolute;
+            min-height: 10rem;
+            background-color: rgba(255,0,0,0.1);
+            border: 1px solid rgba(39,41,43,0.1);
+        }
+
+    </style>
+
+    <body>
+        <div id="header">
+            header
+        </div>
+        <div id="accessory">
+            accessory
+        </div>
+        <div id="main">
+            <div class="content1">
+                content11111
+            </div>
+            <div class="content">
+                content1
+            </div>
+            <div class="content">
+                content1
+            </div>
+            <div class="content">
+                content1
+            </div>
+        </div>
+        <div id="footer">
+            footer
+        </div>
+        <!--<div class="demo">-->
+            <!--<div class="box"></div>-->
+        <!--</div>-->
+    </body>
+</html>
