@@ -11,7 +11,7 @@
 
     <properties>
         <io.springfox.swagger.version>2.10.5</io.springfox.swagger.version>
-        <jackson.json.version>2.11.2</jackson.json.version>
+        <jackson.json.version>2.12.6.1</jackson.json.version>
         <java.version>1.8</java.version>
     </properties>
 
